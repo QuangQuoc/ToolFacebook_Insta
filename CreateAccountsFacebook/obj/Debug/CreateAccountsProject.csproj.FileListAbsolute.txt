@@ -1,0 +1,7 @@
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\ControlLdPlayer\obj\Debug\CreateAccountsProject.csprojAssemblyReference.cache
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\ControlLdPlayer\obj\Debug\ControlLdPlayer.Properties.Resources.resources
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\ControlLdPlayer\obj\Debug\CreateAccountsProject.Views.CreateAccount.resources
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\ControlLdPlayer\obj\Debug\CreateAccountsProject.Views.LdPlayer.resources
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\ControlLdPlayer\obj\Debug\CreateAccountsProject.csproj.GenerateResource.cache
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\ControlLdPlayer\obj\Debug\ControlLdPlayer.exe
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\ControlLdPlayer\obj\Debug\ControlLdPlayer.pdb
