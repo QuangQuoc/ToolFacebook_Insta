@@ -1,0 +1,9 @@
+E:\02. Cong viec\Share_Quoc_Sang\ToolDevelop\Tool\01. FaceBook\05. Auto Android\02. Chuong trinh\ControlLdPlayer\obj\Debug\ControlLdPlayer.csprojAssemblyReference.cache
+E:\02. Cong viec\Share_Quoc_Sang\ToolDevelop\Tool\01. FaceBook\05. Auto Android\02. Chuong trinh\ControlLdPlayer\obj\Debug\ControlLdPlayer.Properties.Resources.resources
+E:\02. Cong viec\Share_Quoc_Sang\ToolDevelop\Tool\01. FaceBook\05. Auto Android\02. Chuong trinh\ControlLdPlayer\obj\Debug\ControlLdPlayer.csproj.GenerateResource.cache
+E:\02. Cong viec\Share_Quoc_Sang\ToolDevelop\Tool\01. FaceBook\05. Auto Android\02. Chuong trinh\ControlLdPlayer\bin\Debug\ControlLdPlayer.exe.config
+E:\02. Cong viec\Share_Quoc_Sang\ToolDevelop\Tool\01. FaceBook\05. Auto Android\02. Chuong trinh\ControlLdPlayer\bin\Debug\ControlLdPlayer.exe
+E:\02. Cong viec\Share_Quoc_Sang\ToolDevelop\Tool\01. FaceBook\05. Auto Android\02. Chuong trinh\ControlLdPlayer\bin\Debug\ControlLdPlayer.pdb
+E:\02. Cong viec\Share_Quoc_Sang\ToolDevelop\Tool\01. FaceBook\05. Auto Android\02. Chuong trinh\ControlLdPlayer\obj\Debug\ControlLdPlayer.exe
+E:\02. Cong viec\Share_Quoc_Sang\ToolDevelop\Tool\01. FaceBook\05. Auto Android\02. Chuong trinh\ControlLdPlayer\obj\Debug\ControlLdPlayer.pdb
+E:\02. Cong viec\Share_Quoc_Sang\ToolDevelop\Tool\01. FaceBook\05. Auto Android\02. Chuong trinh\ControlLdPlayer\obj\Debug\ControlLdPlayer.Views.LdPlayer.resources
