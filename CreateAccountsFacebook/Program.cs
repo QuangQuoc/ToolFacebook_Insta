@@ -17,7 +17,7 @@ namespace CreateAccountsProject
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LdPlayer());
+            Application.Run(new CreateAccount());
         }
     }
 }

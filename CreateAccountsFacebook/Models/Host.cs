@@ -11,5 +11,16 @@ namespace CreateAccountsProject.Models
         public int Id { get; set; }
 
         public string Name { get; set; }
+
+        public Host()
+        {
+
+        }
+
+        public Host(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
     }
 }

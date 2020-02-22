@@ -1,4 +1,5 @@
-﻿using CreateAccountsProject.Models;
+﻿using ControlLdPlayer.Repositories;
+using CreateAccountsProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,10 @@ namespace CreateAccountsProject.Repositories
 
         public Device Add(Device device)
         {
-            return new Device();
+            int id = TestDb.Devices.Count;
+            device.Id = id;
+            TestDb.Devices.Add(device);
+            return device;
         }
 
     }

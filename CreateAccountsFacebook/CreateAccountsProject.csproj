@@ -75,7 +75,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DevicesRepository.cs" />
     <Compile Include="Repositories\HostRepository.cs" />
+    <Compile Include="Repositories\TestDb.cs" />
     <Compile Include="Services\CmdService.cs" />
+    <Compile Include="Services\DeviceVariablesService.cs" />
+    <Compile Include="Services\LdPlayerService.cs" />
     <Compile Include="Services\VariablesService.cs" />
     <Compile Include="Views\CreateAccount.cs">
       <SubType>Form</SubType>

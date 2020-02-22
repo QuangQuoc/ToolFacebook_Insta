@@ -16,6 +16,8 @@ namespace CreateAccountsProject.Models
 
         public bool Status { get; set; }
 
+        public string browserName { get; set; }
+
 
         public Host Host { get; set; }
         public int HostId { get; set; }

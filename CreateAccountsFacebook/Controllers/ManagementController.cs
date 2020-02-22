@@ -1,4 +1,5 @@
-﻿using CreateAccountsProject.Models;
+﻿using ControlLdPlayer.Services;
+using CreateAccountsProject.Models;
 using CreateAccountsProject.Repositories;
 using CreateAccountsProject.Services;
 using System;
@@ -16,17 +17,17 @@ namespace CreateAccountsProject.Controllers
         private DevicesRepository devicesRepo = new DevicesRepository();
         private HostRepository hostRepo = new HostRepository();
         private LdPlayerController ldControl = new LdPlayerController();
-        public void ManagementTool()
+        public void StartManagement()
         {
             // Đọc thông tin host
             //- Kiểm tra host đã có thông tin chưa
-            VariablesService.myHost = hostRepo.ReadHost(VariablesService.myHostName);
-            if (VariablesService.myHost == null)
+            DeviceVariablesService.MyHost = hostRepo.ReadHost(DeviceVariablesService.MyHostName);
+            if (DeviceVariablesService.MyHost == null)
             {
-                VariablesService.myHost = hostRepo.AddHost(VariablesService.myHostName);
+                DeviceVariablesService.MyHost = hostRepo.AddHost(DeviceVariablesService.MyHostName);
             }
             // Đọc các LD chưa đủ 5 tài khoản từ database trên máy này
-            List<Device> devices = devicesRepo.CheckDevicesAccount(VariablesService.myHostName);
+            List<Device> devices = devicesRepo.CheckDevicesAccount(DeviceVariablesService.MyHostName);
             // TH có thiết bị chưa đủ tài khoản
             if (devices.Count > 0)
             {
@@ -48,9 +49,9 @@ namespace CreateAccountsProject.Controllers
                 }
             }
             // Trong điều kiện còn cho phép lập nick mới
-            while(VariablesService.createBotLive)
+            while(DeviceVariablesService.CreateBotLive)
             {
-                if (VariablesService.threadRunning < VariablesService.maxThread)
+                if (DeviceVariablesService.ThreadRunning < DeviceVariablesService.MaxThread)
                 {
                     // Tạo và chạy 1 LD mới
                     Device device = ldControl.CreateDevice();
@@ -69,9 +70,8 @@ namespace CreateAccountsProject.Controllers
         {
             CreateAccountsController createAccoutsLd = new CreateAccountsController(device);
             Thread thread = new Thread(createAccoutsLd.CreateAccountsLD);
-            VariablesService.threadRunning += 1;
+            DeviceVariablesService.ThreadRunning += 1;
             thread.Start();
         }
-
     }
 }
