@@ -183,12 +183,17 @@ namespace ControlLdPlayer.Services
         /// + Tạo biến string nhận sdt, đặt trong vòng lặp while khi có sdt thì break
         /// </summary>
         /// <returns></returns>
-        public string getNumber()
+        public string GetNumber()
         {
             string numberPhone = "";
+            int n = 0;
             while (true)
             {
-                Thread.Sleep(TimeSpan.FromSeconds(3));
+                if (n == 12)
+                {
+                    break;
+                }
+                Thread.Sleep(TimeSpan.FromSeconds(5));
                 Dictionary<string, dynamic> data = CheckRequest(requestID);
                 try
                 {
@@ -199,6 +204,7 @@ namespace ControlLdPlayer.Services
                 {
                     break;
                 }
+                n++;
             }
             return numberPhone;
         }
@@ -207,9 +213,9 @@ namespace ControlLdPlayer.Services
         /// Lấy sms fb trả về khi yêu cầu lập nick
         /// </summary>
         /// <returns></returns>
-        public string getSms()
+        public string GetSms()
         {
-            string code = "";
+            string code = null;
             long checkTime = 10;
             while (true)
             {
@@ -231,19 +237,12 @@ namespace ControlLdPlayer.Services
                     }
                 }
                 checkTime = data["timeleft"];
-                if ((code != "") || (checkTime <= 0))
+                if ((code != null) || (checkTime <= 0))
                 {
                     break;
                 }
             }
             return code;
-        }
-
-        public Dictionary<string, dynamic> CheckRequest2Fa(string code2Fa)
-        {
-            string url = $"http://localhost:3000/key?secret={code2Fa}";
-            var data = RequestDicData(url);
-            return data;
-        }
+        }      
     }
 }

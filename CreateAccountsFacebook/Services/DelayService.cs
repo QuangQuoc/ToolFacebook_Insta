@@ -18,7 +18,7 @@ namespace ControlLdPlayer.Services
             Thread.Sleep(TimeSpan.FromMilliseconds(ms));
         }
 
-        public static void Secounds(int s)
+        public static void Seconds(int s)
         {
             Thread.Sleep(TimeSpan.FromSeconds(s));
         }

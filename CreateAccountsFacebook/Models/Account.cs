@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ControlLdPlayer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,16 @@ namespace CreateAccountsProject.Models
 
         public string Email { get; set; }
 
+        public string PhoneNumber { get; set; }
+
         public string Password { get; set; }
 
         public string Fb2FACode { get; set; }
 
         public int DeviceId { get; set; }
 
-        public string BrowserName { get; set; }
+        public Browser Browser { get; set; }
+        public int BrowserId { get; set; }
 
         public string FullName { get; set; }
 

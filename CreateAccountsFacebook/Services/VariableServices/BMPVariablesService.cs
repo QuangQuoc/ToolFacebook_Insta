@@ -33,7 +33,7 @@ namespace ControlLdPlayer.Services.VariableServices
             BMP_LastNameFemale = (Bitmap)Bitmap.FromFile("Data/button_lastNameFemale.png");
             BMP_LastNameMale = (Bitmap)Bitmap.FromFile("Data/button_lastNameMale.png");
             // Chọn năm sinh
-            BMP_Year1995 = (Bitmap)Bitmap.FromFile("Data/button_year1995.png");
+            BMP_Year1995 = (Bitmap)Bitmap.FromFile("Data/button_yearBrithday.png");
             // Xác nhận tên
             BMP_ChooseName = (Bitmap)Bitmap.FromFile("Data/button_chooseName.png");
             BMP_ConfirmName = (Bitmap)Bitmap.FromFile("Data/button_confirmName.png");
@@ -52,8 +52,6 @@ namespace ControlLdPlayer.Services.VariableServices
             BMP_Next2Fa = (Bitmap)Bitmap.FromFile("Data/2Fa/button_tiepTuc2Fa.png");
             BMP_EditCode2Fa = (Bitmap)Bitmap.FromFile("Data/2Fa/button_editCode2Fa.png");
         }
-
-        public static Bitmap
                              
     }
 }

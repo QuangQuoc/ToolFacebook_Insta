@@ -11,12 +11,14 @@ namespace ControlLdPlayer.Services
         public static string ApiKeySimThue { get; set; }
         public static Dictionary<string, dynamic> SimThueServices { get; set; }
         public static string SimThueFbServiceName { get; set; }
+        public static bool UseSimThue { get; set; }
 
         public static void Initial()
         {
             ApiKeySimThue = "BTaKJG45nKYfNrYIqYX_MQt6f";
             SimThueServices = null;
             SimThueFbServiceName = "Facebook";
+            UseSimThue = true;
         }
     }
 }

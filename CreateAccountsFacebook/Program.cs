@@ -18,6 +18,7 @@ namespace CreateAccountsProject
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new CreateAccount());
+
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ControlLdPlayer.Repositories;
 using ControlLdPlayer.Services;
+using ControlLdPlayer.Services.VariableServices;
 using CreateAccountsProject.Controllers;
 using CreateAccountsProject.Services;
 using System;
@@ -21,6 +22,8 @@ namespace CreateAccountsProject.Views
         {
             InitializeComponent();
             DeviceVariablesService.Initial();
+            BMPVariablesService.Initial();
+            SimVariablesService.Initial();
             TestDb.Initial();
         }
 

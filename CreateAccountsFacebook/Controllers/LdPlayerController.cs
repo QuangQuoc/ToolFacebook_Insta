@@ -1,4 +1,5 @@
-﻿using ControlLdPlayer.Services;
+﻿using ControlLdPlayer.Models;
+using ControlLdPlayer.Services;
 using CreateAccountsProject.Models;
 using CreateAccountsProject.Repositories;
 using CreateAccountsProject.Services;
@@ -45,8 +46,7 @@ namespace CreateAccountsProject.Controllers
                 int index = DeviceVariablesService.DeviceIpsRunning.FindIndex(drning => drning == dvIp);
                 if (index == -1)
                 {
-                    device.DeviceIp = dvIp;
-                    Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeInstallApp));
+                    device.DeviceIp = dvIp;                            
                 }
             }
             // Thêm thông tin deviceIp đang chạy
@@ -56,11 +56,16 @@ namespace CreateAccountsProject.Controllers
             {
                 string apkBrowser = $"{DeviceVariablesService.ApkPath}{DeviceVariablesService.ApkBrowserName}{i + 1}.apk";
                 LdPlayerService.InstallApp(device.Name, apkBrowser);
-                Thread.Sleep(TimeSpan.FromSeconds(2));
+
+                Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeInstallApp));
+                // Thêm thông tin Browser đã cài vào Device
+                Browser br = new Browser($"{DeviceVariablesService.BrowserName}{i + 1}", apkBrowser);
+                device.Browsers.Add(br);
             }
             string apkFbName = $@"{DeviceVariablesService.ApkPath}{DeviceVariablesService.ApkFacebookName}";
             LdPlayerService.InstallApp(device.Name, apkFbName);
-            Thread.Sleep(TimeSpan.FromSeconds(2));
+            Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeInstallApp));
+            
             // Lấy ra device mới chạy
             device.Status = true;
             // Lưu thông tin device vào Db

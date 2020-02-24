@@ -23,6 +23,10 @@ namespace ControlLdPlayer.Services
         public static string ApkBrowserName { get; set; }
         public static string ApkFacebookName { get; set; }
         public static string LdDirectory { get; set; }
+        public static string BrowserName { get; set; }
+        public static string Password { get; set; }
+        public static bool UseClipboard { get; set; }
+
         public static void Initial()
         {
             CreateBotLive = true;
@@ -37,6 +41,9 @@ namespace ControlLdPlayer.Services
             ApkFacebookName = "NameFacebook.apk";
             DeviceIpsRunning = new List<string>();
             LdDirectory = @"E:\ChangZhi\LDPlayer";
+            BrowserName = "mark.via.gp0";
+            Password = "quocsang199698";
+            UseClipboard = true;
         }
 
         public static void AddmaxThread(int mt)
