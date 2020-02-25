@@ -1,4 +1,5 @@
-﻿using CreateAccountsProject.Models;
+﻿using ControlLdPlayer.Repositories;
+using CreateAccountsProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +12,18 @@ namespace CreateAccountsProject.Repositories
     {
         public Host ReadHost(string hostName) // DOING
         {
-            return new Host();
+            int index = TestDb.Hosts.FindIndex(h => h.Name == hostName);
+            if (index != -1)
+            {
+                return TestDb.Hosts[index];
+            }
+            return null; //DOING_DB
         }
         public Host AddHost(string hostName)
         {
-            return new Host();
+            var host = new Host(1, hostName);
+            TestDb.Hosts.Add(host);
+            return host;
         }
     }
 }

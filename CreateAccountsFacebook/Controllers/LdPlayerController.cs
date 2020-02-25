@@ -1,4 +1,6 @@
-﻿using CreateAccountsProject.Models;
+﻿using ControlLdPlayer.Models;
+using ControlLdPlayer.Services;
+using CreateAccountsProject.Models;
 using CreateAccountsProject.Repositories;
 using CreateAccountsProject.Services;
 using CreateAccountsProject.Views;
@@ -19,100 +21,51 @@ namespace CreateAccountsProject.Controllers
         public LdPlayerController()
         {
         }
-
-        public void Create(string ldName)
-        {
-            string command = $"add --name \"{ldName}\"";
-            CmdService.RunLdConsole(command);
-        }
-        /// <summary>
-        /// Chạy LD - sử dụng tên LD
-        /// </summary>
-        /// <param name="ldName"></param>
-        public void Run(string ldName)
-        {
-            string command = $"launch --name \"{ldName}\"";
-            CmdService.RunLdConsole(command);
-        }
-
-        public void Quit(string ldName)
-        {
-            string command = $"quit --name \"{ldName}\"";
-            CmdService.RunLdConsole(command);
-        }
-
-        public void QuitAll()
-        {
-            string command = $"quitall";
-            CmdService.RunLdConsole(command);
-        }
-
-        public void PropertySetting(string ldName, LDProperty property)
-        {
-            string command = $"modify --name \"{ldName}\" --resolution \"{property.Resolution}\" --cpu \"{property.Resolution}\" --memory \"{property.Memory}\" --imei \"{property.Imei}\"";
-            CmdService.RunLdConsole(command);
-        }
-
-        public void InstallApp(string ldName, string fileName)
-        {
-            string command = $"installapp --name \"{ldName}\" --filename \"{fileName}\"";
-            CmdService.RunLdConsole(command);
-        }
-
-        public void UnInstallApp(string ldName, string packageName)
-        {
-            string command = $"uninstallapp --name \"{ldName}\" --packagename \"{packageName}\"";
-            CmdService.RunLdConsole(command);
-        }
-
-        public void RunApp(string ldName, string packageName)
-        {
-            string command = $"runapp --name \"{ldName}\" --packagename \"{packageName}\"";
-            CmdService.RunLdConsole(command);
-        }
-
-        public void KillApp(string ldName, string packageName)
-        {
-            string command = $"killapp --name \"{ldName}\" --packagename \"{packageName}\"";
-            CmdService.RunLdConsole(command);
-        }
-
+      
         public Device CreateDevice()
         {
             Device device = new Device();
             // Tạo tên cho device
-            string name = $"Device_{random.Next(1000, 10000).ToString()}_{DateTime.Now.ToString()}";
+            string name = $"Device_{random.Next(1000, 10000).ToString()}_{DateTime.Now.ToString("yyyyMMdd-HHmmss")}";
             device.Name = name;
             // Thêm thông tin host
-            device.HostId = VariablesService.myHost.Id;
+            device.HostId = DeviceVariablesService.MyHost.Id;
             // Tạo Ld mới
-            Create(device.Name);
-            Thread.Sleep(TimeSpan.FromSeconds(VariablesService.timeCreateDevice));
+            LdPlayerService.Create(device.Name);
+            Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeCreateDevice));
             // Config device
-            PropertySetting(device.Name, VariablesService.configDevice);
+            LdPlayerService.PropertySetting(device.Name, DeviceVariablesService.ConfigDevice);
+            Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeCreateDevice));
             // Rundevice
-            Run(device.Name);
-            Thread.Sleep(TimeSpan.FromSeconds(VariablesService.timeRunDevice));
+            LdPlayerService.Run(device.Name);
+            Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeRunDevice));
             // Đọc ip tất cả device
             List<String> deviceIps = KAutoHelper.ADBHelper.GetDevices();
             foreach (var dvIp in deviceIps)
             {
-                int index = VariablesService.deviceIpsRunning.FindIndex(drning => drning == dvIp);
+                int index = DeviceVariablesService.DeviceIpsRunning.FindIndex(drning => drning == dvIp);
                 if (index == -1)
                 {
-                    device.DeviceIp = dvIp;
+                    device.DeviceIp = dvIp;                            
                 }
             }
             // Thêm thông tin deviceIp đang chạy
-            VariablesService.deviceIpsRunning.Add(device.DeviceIp);
+            DeviceVariablesService.DeviceIpsRunning.Add(device.DeviceIp);
             // Cài phần mềm
             for (int i = 0; i < 5; i++)
             {
-                InstallApp(device.Name, $"{VariablesService.apkBrowserPath}\\{VariablesService.apkBrowserName}{i}.apk");
-                Thread.Sleep(TimeSpan.FromSeconds(2));
+                string apkBrowser = $"{DeviceVariablesService.ApkPath}{DeviceVariablesService.ApkBrowserName}{i + 1}.apk";
+                LdPlayerService.InstallApp(device.Name, apkBrowser);
+
+                Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeInstallApp));
+                // Thêm thông tin Browser đã cài vào Device
+                Browser br = new Browser($"{DeviceVariablesService.BrowserName}{i + 1}", apkBrowser);
+                device.Browsers.Add(br);
             }
-            InstallApp(device.Name, $"{VariablesService.apkBrowserPath}\\{VariablesService.apkFacebookName}");
-            Thread.Sleep(TimeSpan.FromSeconds(2));
+            string apkFbName = $@"{DeviceVariablesService.ApkPath}{DeviceVariablesService.ApkFacebookName}";
+            LdPlayerService.InstallApp(device.Name, apkFbName);
+            Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeInstallApp));
+            
             // Lấy ra device mới chạy
             device.Status = true;
             // Lưu thông tin device vào Db
