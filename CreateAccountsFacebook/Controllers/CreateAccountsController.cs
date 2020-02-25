@@ -419,6 +419,14 @@ namespace CreateAccountsProject.Controllers
                 }
                 Thread.Sleep(TimeSpan.FromSeconds(10));
                 // Get uid từ link
+                // Lấy quyền sử dụng Clipboard
+                // - Chờ cho đến khi có quyền sử dụng Clipboard
+                while (DeviceVariablesService.UseClipboard)
+                {
+                    DelayService.Seconds(5);
+                }
+                // - Lấy quyền sử dụng Clipboard
+                DeviceVariablesService.UseClipboard = true;
                 string linkURL = "";
                 KAutoHelper.ADBHelper.TapByPercent(deviceID, 15.6, 7.6);
                 Thread.Sleep(TimeSpan.FromSeconds(1));
@@ -433,6 +441,7 @@ namespace CreateAccountsProject.Controllers
                         try
                         {
                             linkURL = System.Windows.Forms.Clipboard.GetText();
+                            DeviceVariablesService.UseClipboard = false;
                         }
                         catch (Exception ex)
                         {
