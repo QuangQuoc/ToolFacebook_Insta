@@ -1,5 +1,5 @@
-﻿using ControlLdPlayer.Services;
-using ControlLdPlayer.Services.VariableServices;
+﻿using CreateAccountsProject.Services;
+using CreateAccountsProject.Services.VariableServices;
 using CreateAccountsProject.Models;
 using CreateAccountsProject.Repositories;
 using CreateAccountsProject.Services;

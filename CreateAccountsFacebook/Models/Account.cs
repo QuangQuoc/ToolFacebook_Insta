@@ -1,4 +1,4 @@
-﻿using ControlLdPlayer.Models;
+﻿using CreateAccountsProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,16 +23,14 @@ namespace CreateAccountsProject.Models
 
         public string Fb2FACode { get; set; }
 
-        public int DeviceId { get; set; }
-
         public Browser Browser { get; set; }
-        public int BrowserId { get; set; }
 
         public string FullName { get; set; }
 
         public DateTime BirthDay { get; set; }
 
-        public int AvatarId { get; set; }
+        public Avatar Avatar { get; set; }
+        public int? AvatarId { get; set; }
 
         public string GioiTinh { get; set; }
     }

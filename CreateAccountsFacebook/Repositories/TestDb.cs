@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControlLdPlayer.Repositories
+namespace CreateAccountsProject.Repositories
 {
     public static class TestDb
     {

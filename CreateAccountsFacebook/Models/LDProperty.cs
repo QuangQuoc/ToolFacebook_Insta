@@ -8,6 +8,8 @@ namespace CreateAccountsProject.Models
 {
     public class LDProperty
     {
+        public int Id { get; set; }
+
         public string Resolution { get; set; }
 
         public string Cpu { get; set; }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControlLdPlayer.Services
+namespace CreateAccountsProject.Services
 {
     public class DeviceVariablesService
     {

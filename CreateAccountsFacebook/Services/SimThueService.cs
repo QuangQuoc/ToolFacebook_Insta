@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ControlLdPlayer.Services
+namespace CreateAccountsProject.Services
 {
     public class SimThueService
     {

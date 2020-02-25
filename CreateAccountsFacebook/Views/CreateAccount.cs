@@ -1,8 +1,7 @@
-﻿using ControlLdPlayer.Repositories;
-using ControlLdPlayer.Services;
-using ControlLdPlayer.Services.VariableServices;
-using CreateAccountsProject.Controllers;
+﻿using CreateAccountsProject.Repositories;
 using CreateAccountsProject.Services;
+using CreateAccountsProject.Services.VariableServices;
+using CreateAccountsProject.Controllers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
