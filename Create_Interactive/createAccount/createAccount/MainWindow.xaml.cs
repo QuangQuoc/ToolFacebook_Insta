@@ -57,11 +57,11 @@ namespace createAccount
                     {
                         Regist nick = new Regist(deviceID, i);
                         nick.run();
-                        UpdateInfo upInfo = new UpdateInfo(deviceID, i);
-                        upInfo.upAddress();
-                        upInfo.updateAvatar(avatar[i]);
-                        //upInfo.setup2Fa();
-                        upInfo.addFriend();
+                        //UpdateInfo upInfo = new UpdateInfo(deviceID, i);
+                        //upInfo.upAddress();
+                        //upInfo.updateAvatar(avatar[i]);
+                        ////upInfo.setup2Fa();
+                        //upInfo.addFriend();
                     }
                 });
                 t.Start();

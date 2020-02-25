@@ -68,7 +68,7 @@ namespace createAccount
         public void upAddress()
         {
             try
-            { 
+            {
                 KAutoHelper.ADBHelper.ExecuteCMD($"adb shell monkey -p mark.via.gp0{browser.ToString()} -c android.intent.category.LAUNCHER 1");
                 Thread.Sleep(TimeSpan.FromSeconds(3));
                 loadLink("https://mbasic.facebook.com/profile/questions/view");
@@ -268,6 +268,8 @@ namespace createAccount
             }
             catch { }
         }
+
+    
 
         /// <param name="link"></param>
         private void loadLink(string link)
