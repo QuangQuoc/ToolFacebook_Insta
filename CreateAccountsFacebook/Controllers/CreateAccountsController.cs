@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -108,6 +109,8 @@ namespace CreateAccountsProject.Controllers
                         }
                     }
                     UpAddress();
+                    string uid = GetUserId();
+                    acc.UserId = uid;
                     AddFriend();
                     //string code2Fa = Setup2Fa();
                     //acc.Fb2FACode = code2Fa;
@@ -221,19 +224,19 @@ namespace CreateAccountsProject.Controllers
             string deviceID = ld.DeviceIp;
             // Chọn ngày sinh
             int[] y = { 885, 790, 690, 590, 490, 390, 290, 190, 90 };
-            DelayService.Seconds(1);
+            DelayService.Seconds(2);
             KAutoHelper.ADBHelper.TapByPercent(deviceID, 14.5, 66.2);
-            DelayService.Seconds(1);
+            DelayService.Seconds(2);
             KAutoHelper.ADBHelper.Tap(deviceID, 150, y[random.Next(y.Length)]);
-            DelayService.Seconds(1);
+            DelayService.Seconds(2);
             // Chọn tháng sinh
             KAutoHelper.ADBHelper.TapByPercent(deviceID, 36.5, 66.2);
-            DelayService.Seconds(1);
+            DelayService.Seconds(2);
             KAutoHelper.ADBHelper.Tap(deviceID, 150, y[random.Next(y.Length)]);
-            DelayService.Seconds(1);
+            DelayService.Seconds(2);
             // Chọn năm sinh nếu mặc định năm sinh 2020 thì swipe
             KAutoHelper.ADBHelper.TapByPercent(deviceID, 59.0, 66.2);
-            DelayService.Seconds(1);
+            DelayService.Seconds(2);
             var screen = KAutoHelper.ADBHelper.ScreenShoot(deviceID);
             var compare_Year1995 = KAutoHelper.ImageScanOpenCV.FindOutPoint(screen, BMPVariablesService.BMP_Year1995);
             
@@ -389,9 +392,71 @@ namespace CreateAccountsProject.Controllers
             catch { /* Lỗi upAddress */ }
         }
 
-        public void GetUserId()
+        public string GetUserId()
         {
-
+            string deviceID = ld.DeviceIp;
+            try
+            {
+                // load đến link chứa uid
+                Thread.Sleep(TimeSpan.FromSeconds(3));
+                loadLink("https://mbasic.facebook.com/profile");
+                try
+                {
+                    var screen1 = KAutoHelper.ADBHelper.ScreenShoot(deviceID);
+                    var compare_LoadLinkGetId = KAutoHelper.ImageScanOpenCV.FindOutPoint(screen1, BMPVariablesService.BMP_LoadLinkGetId);
+                    if (compare_LoadLinkGetId != null)
+                    {
+                        KAutoHelper.ADBHelper.Tap(deviceID, compare_LoadLinkGetId.Value.X, compare_LoadLinkGetId.Value.Y);
+                    }
+                    else
+                    {
+                        KAutoHelper.ADBHelper.TapByPercent(deviceID, 37.3, 16.6);
+                    }
+                }
+                catch
+                {
+                    KAutoHelper.ADBHelper.TapByPercent(deviceID, 37.3, 16.6);
+                }
+                Thread.Sleep(TimeSpan.FromSeconds(10));
+                // Get uid từ link
+                string linkURL = "";
+                KAutoHelper.ADBHelper.TapByPercent(deviceID, 15.6, 7.6);
+                Thread.Sleep(TimeSpan.FromSeconds(1));
+                KAutoHelper.ADBHelper.LongPress(deviceID, 90, 70, 1000);
+                Thread.Sleep(TimeSpan.FromSeconds(2));
+                KAutoHelper.ADBHelper.TapByPercent(deviceID, 80.0, 8.8);
+                // Lấy dữ liệu từ clipboard
+                Exception threadEx = null;
+                Thread staThread = new Thread(
+                    delegate ()
+                    {
+                        try
+                        {
+                            linkURL = System.Windows.Forms.Clipboard.GetText();
+                        }
+                        catch (Exception ex)
+                        {
+                            threadEx = ex;
+                        }
+                    });
+                staThread.SetApartmentState(ApartmentState.STA);
+                staThread.Start();
+                staThread.Join();
+                // Tách Uid từ link
+                string Uid = null;
+                foreach (string value in Regex.Split(linkURL, @"\D+"))
+                {
+                    if (!string.IsNullOrEmpty(value))
+                    {
+                        if (value.Length >= 15)
+                        {
+                            Uid = value;
+                        }
+                    }
+                }
+                return Uid;
+            }
+            catch { return null; }
         }
 
         public string Setup2Fa()

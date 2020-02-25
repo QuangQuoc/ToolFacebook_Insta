@@ -25,6 +25,7 @@ namespace ControlLdPlayer.Services.VariableServices
         public static Bitmap BMP_GetLinkCode2Fa { get; set; }
         public static Bitmap BMP_Next2Fa { get; set; }
         public static Bitmap BMP_EditCode2Fa { get; set; }
+        public static Bitmap BMP_LoadLinkGetId { get; set; }
 
         public static void Initial()
         {
@@ -51,6 +52,8 @@ namespace ControlLdPlayer.Services.VariableServices
             BMP_GetLinkCode2Fa = (Bitmap)Bitmap.FromFile("Data/2Fa/button_getLinkCode2Fa.png");
             BMP_Next2Fa = (Bitmap)Bitmap.FromFile("Data/2Fa/button_tiepTuc2Fa.png");
             BMP_EditCode2Fa = (Bitmap)Bitmap.FromFile("Data/2Fa/button_editCode2Fa.png");
+            // Get UID
+            BMP_LoadLinkGetId = (Bitmap)Bitmap.FromFile("Data/GetUserId/button_loadLinkGetId.png");
         }
                              
     }
