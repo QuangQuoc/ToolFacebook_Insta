@@ -389,6 +389,11 @@ namespace CreateAccountsProject.Controllers
             catch { /* Lỗi upAddress */ }
         }
 
+        public void GetUserId()
+        {
+
+        }
+
         public string Setup2Fa()
         {
             string deviceID = ld.DeviceIp;
