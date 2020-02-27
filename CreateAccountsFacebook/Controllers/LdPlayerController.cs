@@ -1,8 +1,6 @@
 ﻿using CreateAccountsProject.Models;
 using CreateAccountsProject.Services;
-using CreateAccountsProject.Models;
 using CreateAccountsProject.Repositories;
-using CreateAccountsProject.Services;
 using CreateAccountsProject.Views;
 using System;
 using System.Collections.Generic;
@@ -59,8 +57,8 @@ namespace CreateAccountsProject.Controllers
 
                 Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeInstallApp));
                 // Thêm thông tin Browser đã cài vào Device
-                Browser br = new Browser($"{DeviceVariablesService.BrowserName}{i + 1}", apkBrowser);
-                device.Browsers.Add(br);
+                Account acc = new Account($"{DeviceVariablesService.BrowserName}{i + 1}", apkBrowser);
+                device.Accounts.Add(acc);
             }
             string apkFbName = $@"{DeviceVariablesService.ApkPath}{DeviceVariablesService.ApkFacebookName}";
             LdPlayerService.InstallApp(device.Name, apkFbName);
@@ -68,6 +66,7 @@ namespace CreateAccountsProject.Controllers
             
             // Lấy ra device mới chạy
             device.Status = true;
+            device.HostId = DeviceVariablesService.MyHost.Id;
             // Lưu thông tin device vào Db
             device = devicesRepo.Add(device);
             return device;

@@ -201,3 +201,4 @@ E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\D
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\MySql.Data.xml
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\MySql.Data.Entity.EF6.xml
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Debug\ControlLdPlayer.Migrations.init.resources
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Debug\ControlLdPlayer.Migrations.nullAvatar.resources

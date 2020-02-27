@@ -2,7 +2,6 @@
 using CreateAccountsProject.Services.VariableServices;
 using CreateAccountsProject.Models;
 using CreateAccountsProject.Repositories;
-using CreateAccountsProject.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,10 +39,10 @@ namespace CreateAccountsProject.Controllers
             // Trong LD đã có thông tin Browser
             int nError = 0;
             string browserNameError = null;
-            for (int i = 0; i < ld.Browsers.Count; i++)
+            for (int i = 0; i < ld.Accounts.Count; i++)
             {
                 // TH: Nếu Browser chưa được sử dụng
-                if (!ld.Browsers[i].Status)
+                if (!ld.Accounts[i].BrowserStatus)
                 {
                     if (nError == 2)
                     {
@@ -51,10 +50,8 @@ namespace CreateAccountsProject.Controllers
                         ErrorService.SimThue_GetSmsError();
                         return;
                     }
-                    // Tạo tài khoản mới trên Browser này
-                    Account acc = new Account();
                     // Tạo Account Name
-                    AddAccountName(ld.Browsers[i].Name);
+                    AddAccountName(ld.Accounts[i].BrowserName);
                     AddBrithday();                   
                     string phoneNumber = null;
                     if (SimVariablesService.UseSimThue)
@@ -78,45 +75,46 @@ namespace CreateAccountsProject.Controllers
                             n++;
                         }
                     }
-                    acc.PhoneNumber = phoneNumber;
+                    ld.Accounts[i].PhoneNumber = phoneNumber;
                     string pass = AddPassWord();
-                    acc.Password = pass;
+                    ld.Accounts[i].Password = pass;
                     bool smsOk = RequestSms();
                     // TH không lấy được Message
                     if (!smsOk)
                     {
                         // Xóa browser
-                        LdPlayerService.UnInstallApp(ld.Name, ld.Browsers[i].Name);
+                        LdPlayerService.UnInstallApp(ld.Name, ld.Accounts[i].BrowserName);
                         DelayService.Minutes(1);
                         // Cài lại
-                        LdPlayerService.InstallApp(ld.Name, ld.Browsers[i].FileName);
+                        LdPlayerService.InstallApp(ld.Name, ld.Accounts[i].BrowserFileName);
                         DelayService.Seconds(40);
                         // Cho chạy lại trình duyệt này
                         i--;
                         if (browserNameError == null)
                         {
-                            browserNameError = ld.Browsers[i].Name;
+                            browserNameError = ld.Accounts[i].BrowserName;
                             nError++;
                         }
-                        else if (browserNameError == ld.Browsers[i].Name)
+                        else if (browserNameError == ld.Accounts[i].BrowserName)
                         {
                             nError++;
                         }
                         else
                         {
-                            browserNameError = ld.Browsers[i].Name;
+                            browserNameError = ld.Accounts[i].BrowserName;
                             nError = 1;
                         }
                     }
                     UpAddress();
                     string uid = GetUserId();
-                    acc.UserId = uid;
+                    ld.Accounts[i].UserId = uid;
                     AddFriend();
-                    //string code2Fa = Setup2Fa();
-                    //acc.Fb2FACode = code2Fa;
-                    // Đọc User ID
-
-                    // Lưu Account vào Db
+                    string code2Fa = Setup2Fa();
+                    ld.Accounts[i].Fb2FACode = code2Fa;
+                    // Cập nhật dữ liệu vào Db
+                    ld.ActivedAccounts++;
+                    ld.Accounts[i].BrowserStatus = true;
+                    devicesRepo.UpdateNewAccount(ld, i);
                 }
             }
             // Tạo các tài khoản còn lại

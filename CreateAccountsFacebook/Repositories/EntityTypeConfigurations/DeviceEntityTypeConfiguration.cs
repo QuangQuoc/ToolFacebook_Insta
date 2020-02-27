@@ -27,6 +27,9 @@ namespace ControlLdPlayer.Repositories.EntityTypeConfigurations
             this.Property(d => d.Status)
                 .HasColumnName("status");
 
+            this.Property(d => d.ActivedAccounts)
+                .HasColumnName("actived_account");
+
             this.Property(d => d.HostId)
                 .HasColumnName("host_id");
             this.HasRequired<Host>(d => d.Host)

@@ -10,19 +10,23 @@ namespace CreateAccountsProject.Repositories
 {
     public class HostRepository
     {
+        Context context = new Context();
+        /// <summary>
+        /// Đọc host theo hostName
+        /// </summary>
+        /// <param name="hostName"></param>
+        /// <returns></returns>
         public Host ReadHost(string hostName) // DOING
         {
-            int index = TestDb.Hosts.FindIndex(h => h.Name == hostName);
-            if (index != -1)
-            {
-                return TestDb.Hosts[index];
-            }
-            return null; //DOING_DB
+            Host host = context.Hosts
+                .Where(h => h.Name == hostName)             
+                .FirstOrDefault();
+            return host;
         }
-        public Host AddHost(string hostName)
+        public Host AddHost(Host host)
         {
-            var host = new Host(1, hostName);
-            TestDb.Hosts.Add(host);
+            context.Hosts.Add(host);
+            context.SaveChanges();
             return host;
         }
     }

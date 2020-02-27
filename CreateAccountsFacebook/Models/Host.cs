@@ -19,6 +19,11 @@ namespace CreateAccountsProject.Models
             Devices = new List<Device>();
         }
 
+        public Host(string name) : this()
+        {
+            Name = name;
+        }
+
         public Host(int id, string name) : this()
         {
             Id = id;

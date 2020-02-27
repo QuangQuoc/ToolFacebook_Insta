@@ -27,7 +27,6 @@ namespace CreateAccountsProject.Repositories
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Avatar> Avatars { get; set; }
-        public DbSet<Models.Browser> Browsers { get; set; }
         public DbSet<Device> Devices { get; set; }
         public DbSet<Host> Hosts { get; set; }
         public DbSet<LDProperty> LDProperties { get; set; }
@@ -36,7 +35,6 @@ namespace CreateAccountsProject.Repositories
         {
             modelBuilder.Configurations.Add(new AccountEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new AvatarEntityTypeConfiguration());
-            modelBuilder.Configurations.Add(new BrowserEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new DeviceEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new HostEntityTypeConfiguration());
         }

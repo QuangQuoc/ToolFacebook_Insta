@@ -34,14 +34,12 @@ namespace ControlLdPlayer.Repositories.EntityTypeConfigurations
                 .HasColumnName("phone_number");
             this.Property(a => a.Fb2FACode)
                 .HasColumnName("fb_2fa_code");
-               
-            this.HasRequired<Browser>(a => a.Browser)
-                .WithRequiredPrincipal(b => b.Account);
 
             this.Property(a => a.BirthDay)
                 .HasColumnName("birthday");
             this.Property(a => a.AvatarId)
-                .HasColumnName("avatar_id");
+                .HasColumnName("avatar_id")
+                .IsOptional();
             this.HasRequired<Avatar>(a => a.Avatar)
                 .WithMany(av => av.Accounts)
                 .HasForeignKey(a => a.AvatarId);

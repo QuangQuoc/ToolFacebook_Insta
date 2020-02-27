@@ -18,6 +18,9 @@ namespace ControlLdPlayer.Migrations
                         phone_number = c.String(unicode: false),
                         password = c.String(unicode: false),
                         fb_2fa_code = c.String(unicode: false),
+                        BrowserName = c.String(unicode: false),
+                        BrowserFileName = c.String(unicode: false),
+                        BrowserStatus = c.Boolean(nullable: false),
                         full_name = c.String(unicode: false),
                         birthday = c.DateTime(nullable: false, precision: 0),
                         avatar_id = c.Int(nullable: false),
@@ -41,23 +44,6 @@ namespace ControlLdPlayer.Migrations
                 .PrimaryKey(t => t.id);
             
             CreateTable(
-                "dbo.browsers",
-                c => new
-                    {
-                        id = c.Int(nullable: false, identity: true),
-                        device_id = c.Int(nullable: false),
-                        file_name = c.String(unicode: false),
-                        name = c.String(maxLength: 255, storeType: "nvarchar"),
-                        status = c.Boolean(nullable: false),
-                        AccountId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.devices", t => t.device_id, cascadeDelete: true)
-                .ForeignKey("dbo.accounts", t => t.id)
-                .Index(t => t.id)
-                .Index(t => t.device_id);
-            
-            CreateTable(
                 "dbo.devices",
                 c => new
                     {
@@ -66,6 +52,7 @@ namespace ControlLdPlayer.Migrations
                         DeviceIp = c.String(unicode: false),
                         status = c.Boolean(nullable: false),
                         host_id = c.Int(nullable: false),
+                        actived_account = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.id)
                 .ForeignKey("dbo.hosts", t => t.host_id, cascadeDelete: true)
@@ -96,20 +83,15 @@ namespace ControlLdPlayer.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.browsers", "id", "dbo.accounts");
-            DropForeignKey("dbo.browsers", "device_id", "dbo.devices");
             DropForeignKey("dbo.devices", "host_id", "dbo.hosts");
             DropForeignKey("dbo.accounts", "Device_Id", "dbo.devices");
             DropForeignKey("dbo.accounts", "avatar_id", "dbo.avatars");
             DropIndex("dbo.devices", new[] { "host_id" });
-            DropIndex("dbo.browsers", new[] { "device_id" });
-            DropIndex("dbo.browsers", new[] { "id" });
             DropIndex("dbo.accounts", new[] { "Device_Id" });
             DropIndex("dbo.accounts", new[] { "avatar_id" });
             DropTable("dbo.LDProperties");
             DropTable("dbo.hosts");
             DropTable("dbo.devices");
-            DropTable("dbo.browsers");
             DropTable("dbo.avatars");
             DropTable("dbo.accounts");
         }

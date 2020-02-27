@@ -207,14 +207,17 @@
     <Compile Include="Controllers\LdPlayerController.cs" />
     <Compile Include="Controllers\ManagementController.cs" />
     <Compile Include="Controllers\SimController.cs" />
-    <Compile Include="Migrations\202002251630524_init.cs" />
-    <Compile Include="Migrations\202002251630524_init.Designer.cs">
-      <DependentUpon>202002251630524_init.cs</DependentUpon>
+    <Compile Include="Migrations\202002271615130_init.cs" />
+    <Compile Include="Migrations\202002271615130_init.Designer.cs">
+      <DependentUpon>202002271615130_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002271625259_nullAvatar.cs" />
+    <Compile Include="Migrations\202002271625259_nullAvatar.Designer.cs">
+      <DependentUpon>202002271625259_nullAvatar.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Avatar.cs" />
-    <Compile Include="Models\Browser.cs" />
     <Compile Include="Models\Device.cs" />
     <Compile Include="Models\Host.cs" />
     <Compile Include="Models\LDProperty.cs" />
@@ -224,7 +227,6 @@
     <Compile Include="Repositories\DevicesRepository.cs" />
     <Compile Include="Repositories\EntityTypeConfigurations\AccountEntityTypeConfiguration.cs" />
     <Compile Include="Repositories\EntityTypeConfigurations\AvatarEntityTypeConfiguration.cs" />
-    <Compile Include="Repositories\EntityTypeConfigurations\BrowserEntityTypeConfiguration.cs" />
     <Compile Include="Repositories\EntityTypeConfigurations\DeviceEntityTypeConfiguration.cs" />
     <Compile Include="Repositories\EntityTypeConfigurations\HostEntityTypeConfiguration.cs" />
     <Compile Include="Repositories\HostRepository.cs" />
@@ -246,8 +248,11 @@
     <Compile Include="Views\CreateAccount.Designer.cs">
       <DependentUpon>CreateAccount.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Migrations\202002251630524_init.resx">
-      <DependentUpon>202002251630524_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002271615130_init.resx">
+      <DependentUpon>202002271615130_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002271625259_nullAvatar.resx">
+      <DependentUpon>202002271625259_nullAvatar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

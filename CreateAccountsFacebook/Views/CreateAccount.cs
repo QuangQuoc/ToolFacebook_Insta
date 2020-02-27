@@ -11,12 +11,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CreateAccountsProject.Models;
 
 namespace CreateAccountsProject.Views
 {
     public partial class CreateAccount : Form
     {
         private ManagementController manaCtrl = new ManagementController();
+        private DevicesRepository deviceRepo = new DevicesRepository();
         public CreateAccount()
         {
             InitializeComponent();
@@ -28,6 +30,8 @@ namespace CreateAccountsProject.Views
 
         private void btnRun_Click(object sender, EventArgs e)
         {
+            //TEST
+
             // Đọc số luồng nhập vào và đưa vào biến static
             int thread = Int16.Parse(tbxSoLuong.Text);
             DeviceVariablesService.MaxThread = thread;

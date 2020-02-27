@@ -15,12 +15,12 @@ namespace CreateAccountsProject.Models
         public bool Status { get; set; }
         public Host Host { get; set; }
         public int? HostId { get; set; }
+        public int ActivedAccounts { get; set; }
         public List<Account> Accounts { get; set; }
-        public List<Browser> Browsers { get; set; }
         public Device()
         {
             Accounts = new List<Account>();
-            Browsers = new List<Browser>();
+            ActivedAccounts = 0;
         }
     }
 }
