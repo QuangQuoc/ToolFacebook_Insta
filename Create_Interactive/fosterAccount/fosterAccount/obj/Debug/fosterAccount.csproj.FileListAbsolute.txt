@@ -1,0 +1,17 @@
+C:\Users\Admin\Desktop\Tool Facebook\fosterAccount\fosterAccount\bin\Debug\fosterAccount.exe.config
+C:\Users\Admin\Desktop\Tool Facebook\fosterAccount\fosterAccount\bin\Debug\fosterAccount.exe
+C:\Users\Admin\Desktop\Tool Facebook\fosterAccount\fosterAccount\bin\Debug\fosterAccount.pdb
+C:\Users\Admin\Desktop\Tool Facebook\fosterAccount\fosterAccount\bin\Debug\KAutoHelper.dll
+C:\Users\Admin\Desktop\Tool Facebook\fosterAccount\fosterAccount\obj\Debug\fosterAccount.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\Tool Facebook\fosterAccount\fosterAccount\obj\Debug\MainWindow.g.cs
+C:\Users\Admin\Desktop\Tool Facebook\fosterAccount\fosterAccount\obj\Debug\App.g.cs
+C:\Users\Admin\Desktop\Tool Facebook\fosterAccount\fosterAccount\obj\Debug\fosterAccount_MarkupCompile.cache
+C:\Users\Admin\Desktop\Tool Facebook\fosterAccount\fosterAccount\obj\Debug\fosterAccount_MarkupCompile.lref
+C:\Users\Admin\Desktop\Tool Facebook\fosterAccount\fosterAccount\obj\Debug\MainWindow.baml
+C:\Users\Admin\Desktop\Tool Facebook\fosterAccount\fosterAccount\obj\Debug\fosterAccount.g.resources
+C:\Users\Admin\Desktop\Tool Facebook\fosterAccount\fosterAccount\obj\Debug\fosterAccount.Properties.Resources.resources
+C:\Users\Admin\Desktop\Tool Facebook\fosterAccount\fosterAccount\obj\Debug\fosterAccount.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\Tool Facebook\fosterAccount\fosterAccount\obj\Debug\fosterAccount.csproj.CopyComplete
+C:\Users\Admin\Desktop\Tool Facebook\fosterAccount\fosterAccount\obj\Debug\fosterAccount.exe
+C:\Users\Admin\Desktop\Tool Facebook\fosterAccount\fosterAccount\obj\Debug\fosterAccount.pdb
+C:\Users\Admin\Desktop\Tool Facebook\fosterAccount\fosterAccount\bin\Debug\Emgu.CV.World.dll
