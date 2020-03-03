@@ -116,9 +116,8 @@ namespace CreateAccountsProject.Controllers
                     devicesRepo.UpdateNewAccount(ld, i);
                 }
             }
-            // Tạo các tài khoản còn lại
-            ld.Status = false;
-            // Update Db (ddeer sau)
+            // Update Status
+            devicesRepo.UpdateStatus(ld.Id, false);
             
             //TESTING
             LdPlayerService.Quit(ld.Name);

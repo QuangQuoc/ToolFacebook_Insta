@@ -61,5 +61,29 @@ namespace CreateAccountsProject.Repositories
             }                     
         }
 
+        public bool UpdateStatus(int deviceId, bool status)
+        {
+            try
+            {
+                Device device = context.Devices
+                    .Where(d => d.Id == deviceId)
+                    .FirstOrDefault();
+                if (device != null)
+                {
+                    device.Status = status;
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
     }
 }

@@ -30,7 +30,7 @@ namespace CreateAccountsProject.Services
         public static void Initial()
         {
             CreateBotLive = true;
-            MyHostName = "VanSang_01";
+            MyHostName = "QuangQuoc_01";
             ThreadRunning = 0;
             TimeCreateDevice = 50;
             TimeRunDevice = 80;
