@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControlLdPlayer.Services.VariableServices
+namespace CreateAccountsProject.Services.VariableServices
 {
     public class BMPVariablesService
     {

@@ -1,8 +1,7 @@
-﻿using ControlLdPlayer.Services;
-using ControlLdPlayer.Services.VariableServices;
+﻿using CreateAccountsProject.Services;
+using CreateAccountsProject.Services.VariableServices;
 using CreateAccountsProject.Models;
 using CreateAccountsProject.Repositories;
-using CreateAccountsProject.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,97 +31,95 @@ namespace CreateAccountsProject.Controllers
         /// </summary>
         public void CreateAccountsLD()
         {
-            // Khởi động LD
-            LdPlayerService.Run(ld.Name);
-            Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeRunDevice));
+            if (!ld.Status)
+            {
+                // Khởi động LD
+                LdPlayerService.Run(ld.Name);
+                //Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeRunDevice));
+                Thread.Sleep(TimeSpan.FromSeconds(5)); // TEST
+            }
             // Run app
             // Kiểm tra số browser đã có tài khoản
             // Trong LD đã có thông tin Browser
-            int nError = 0;
-            string browserNameError = null;
-            for (int i = 0; i < ld.Browsers.Count; i++)
+            for (int i = 0; i < ld.Accounts.Count; i++)
             {
                 // TH: Nếu Browser chưa được sử dụng
-                if (!ld.Browsers[i].Status)
+                if (!ld.Accounts[i].BrowserStatus)
                 {
-                    if (nError == 2)
+                    bool runOk = false;
+                    int nError = 0;
+                    while (!runOk)
                     {
-                        // Show Error
-                        ErrorService.SimThue_GetSmsError();
-                        return;
-                    }
-                    // Tạo tài khoản mới trên Browser này
-                    Account acc = new Account();
-                    // Tạo Account Name
-                    AddAccountName(ld.Browsers[i].Name);
-                    AddBrithday();                   
-                    string phoneNumber = null;
-                    if (SimVariablesService.UseSimThue)
-                    {
-                        simthue.CreateRequest();
-                        int n = 0;
-                        while (phoneNumber == null)
+                        if (nError == 2)
                         {
-                            // Lỗi lấy sđt 5 lần
-                            if (n == 3)
+                            // Show Error
+                            ErrorService.SimThue_GetSmsError();                         
+                            return;
+                        }
+                        // Tạo Account Name
+                        AddAccountName(ld.Accounts[i].BrowserName);
+                        AddBrithday();
+                        string phoneNumber = "";
+                        if (SimVariablesService.UseSimThue)
+                        {
+                            simthue.CreateRequest();
+                            int n = 0;
+                            while (phoneNumber == "")
                             {
-                                ErrorService.SimThue_GetNumberError();
-                                return;
+                                // Lỗi lấy sđt 5 lần
+                                if (n == 3)
+                                {
+                                    ErrorService.SimThue_GetNumberError();
+                                    return;
+                                }
+                                DelayService.Seconds(10); //
+                                phoneNumber = AddPhoneNumber();
+                                // delay ni a
+                                if (phoneNumber == "")
+                                {
+                                    DelayService.Seconds(3);
+                                    simthue.CreateRequest();
+                                }
+                                n++;
                             }
-                            phoneNumber = AddPhoneNumber();
-                            if (phoneNumber == null)
-                            {
-                                DelayService.Seconds(1);
-                                simthue.CreateRequest();
-                            }                         
-                            n++;
                         }
-                    }
-                    acc.PhoneNumber = phoneNumber;
-                    string pass = AddPassWord();
-                    acc.Password = pass;
-                    bool smsOk = RequestSms();
-                    // TH không lấy được Message
-                    if (!smsOk)
-                    {
-                        // Xóa browser
-                        LdPlayerService.UnInstallApp(ld.Name, ld.Browsers[i].Name);
-                        DelayService.Minutes(1);
-                        // Cài lại
-                        LdPlayerService.InstallApp(ld.Name, ld.Browsers[i].FileName);
-                        DelayService.Seconds(40);
-                        // Cho chạy lại trình duyệt này
-                        i--;
-                        if (browserNameError == null)
+                        ld.Accounts[i].PhoneNumber = phoneNumber;
+                        string pass = AddPassWord();
+                        ld.Accounts[i].Password = pass;
+                        bool smsOk = RequestSms();
+                        // TH không lấy được Message
+                        if (!smsOk)
                         {
-                            browserNameError = ld.Browsers[i].Name;
-                            nError++;
-                        }
-                        else if (browserNameError == ld.Browsers[i].Name)
-                        {
+                            // Xóa browser
+                            LdPlayerService.UnInstallApp(ld.Name, ld.Accounts[i].BrowserName);
+                            DelayService.Seconds(40);
+                            // Cài lại
+                            LdPlayerService.InstallApp(ld.Name, ld.Accounts[i].BrowserFileName);
+                            DelayService.Seconds(40);
+                            // Cho chạy lại trình duyệt này
                             nError++;
                         }
                         else
                         {
-                            browserNameError = ld.Browsers[i].Name;
-                            nError = 1;
+                            runOk = true;
                         }
-                    }
+                    }                    
                     UpAddress();
                     string uid = GetUserId();
-                    acc.UserId = uid;
+                    ld.Accounts[i].UserId = uid;
                     AddFriend();
-                    //string code2Fa = Setup2Fa();
-                    //acc.Fb2FACode = code2Fa;
-                    // Đọc User ID
-
-                    // Lưu Account vào Db
+                    string code2Fa = Setup2Fa();
+                    ld.Accounts[i].Fb2FACode = code2Fa;
+                    // Cập nhật dữ liệu vào Db
+                    ld.ActivedAccounts++;
+                    ld.Accounts[i].BrowserStatus = true;
+                    devicesRepo.UpdateNewAccount(ld, i);
                 }
             }
-            // Tạo các tài khoản còn lại
-
+            // Update Status
+            devicesRepo.UpdateStatus(ld.Id, false);
+            
             //TESTING
-            Thread.Sleep(TimeSpan.FromMinutes(5));
             LdPlayerService.Quit(ld.Name);
             DeviceVariablesService.ThreadRunning -= 1;
         }
@@ -276,10 +273,16 @@ namespace CreateAccountsProject.Controllers
             DelayService.Seconds(1);
             // điền sdt
             // TH: Sử dụng Sim thuê Service
-            string phoneNumber = null;
+            string phoneNumber = "";
             if (SimVariablesService.UseSimThue)
             {
-                phoneNumber = simthue.GetNumber();
+                int n = 0;
+                while(phoneNumber == "" && n < 3)
+                {
+                    phoneNumber = simthue.GetNumber();
+                    DelayService.Seconds(10);
+                    n++;
+                }
                 KAutoHelper.ADBHelper.InputText(ld.DeviceIp, phoneNumber);
             }
             return phoneNumber;

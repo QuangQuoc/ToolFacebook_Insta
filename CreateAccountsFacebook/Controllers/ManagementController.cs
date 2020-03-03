@@ -1,13 +1,12 @@
-﻿using ControlLdPlayer.Services;
+﻿using CreateAccountsProject.Services;
 using CreateAccountsProject.Models;
 using CreateAccountsProject.Repositories;
-using CreateAccountsProject.Services;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System;
 
 namespace CreateAccountsProject.Controllers
 {
@@ -24,7 +23,8 @@ namespace CreateAccountsProject.Controllers
             DeviceVariablesService.MyHost = hostRepo.ReadHost(DeviceVariablesService.MyHostName);
             if (DeviceVariablesService.MyHost == null)
             {
-                DeviceVariablesService.MyHost = hostRepo.AddHost(DeviceVariablesService.MyHostName);
+                Host host = new Host(DeviceVariablesService.MyHostName);
+                DeviceVariablesService.MyHost = hostRepo.AddHost(host);
             }
             // Đọc các LD chưa đủ 5 tài khoản từ database trên máy này
             List<Device> devices = devicesRepo.CheckDevicesAccount(DeviceVariablesService.MyHostName);
@@ -35,16 +35,18 @@ namespace CreateAccountsProject.Controllers
                 // Thoát khi threadRunning < maxThread 
                 foreach (var device in devices)
                 {
-                    if (VariablesService.threadRunning < VariablesService.maxThread)
-                    {
+                    device.Status = false;
+                    if (DeviceVariablesService.ThreadRunning < DeviceVariablesService.MaxThread)
+                    {                       
                         RunDeviceThreadCreateAcc(device);
                     }
                     else
                     {
-                        while(VariablesService.threadRunning == VariablesService.maxThread)
+                        while(DeviceVariablesService.ThreadRunning == DeviceVariablesService.MaxThread)
                         {
                             Thread.Sleep(TimeSpan.FromSeconds(2));
                         }
+                        RunDeviceThreadCreateAcc(device);
                     }
                 }
             }
