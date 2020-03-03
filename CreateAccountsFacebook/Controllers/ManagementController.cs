@@ -35,8 +35,9 @@ namespace CreateAccountsProject.Controllers
                 // Thoát khi threadRunning < maxThread 
                 foreach (var device in devices)
                 {
+                    device.Status = false;
                     if (DeviceVariablesService.ThreadRunning < DeviceVariablesService.MaxThread)
-                    {
+                    {                       
                         RunDeviceThreadCreateAcc(device);
                     }
                     else
@@ -45,6 +46,7 @@ namespace CreateAccountsProject.Controllers
                         {
                             Thread.Sleep(TimeSpan.FromSeconds(2));
                         }
+                        RunDeviceThreadCreateAcc(device);
                     }
                 }
             }

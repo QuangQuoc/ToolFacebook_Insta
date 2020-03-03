@@ -7,13 +7,13 @@ namespace ControlLdPlayer.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class nullAvatar : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(nullAvatar));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "202002271625259_nullAvatar"; }
+            get { return "202002281529193_init"; }
         }
         
         string IMigrationMetadata.Source

@@ -10,7 +10,7 @@ namespace CreateAccountsProject.Services
 {
     public class VariablesService
     {
-        public static string dirLd = @"E:\ChangZhi\LDPlayer";
+        public static string dirLd = @"C:\ChangZhi\LDPlayer";
 
         public static string apiKey = "BTaKJG45nKYfNrYIqYX_MQt6f";
 
@@ -28,7 +28,8 @@ namespace CreateAccountsProject.Services
         public static int timeCreateDevice = 20;
         public static double timeRunDevice = 60;
         public static LDProperty configDevice = new LDProperty() { Cpu = "1", Memory = "1024", Imei = "", Resolution = "540,960,240" };
-        public static string apkBrowserPath = "E:\\02. Cong viec\\Share_Quoc_Sang\\DataKhongShare\\02. File APK\\FileAPK";
+        public static string apkBrowserPath = "C:\\Users\\Admin\\Desktop\\FileAPK";
+        
         public static string apkBrowserName = "Via0";
         public static string apkFacebookName = "NameFacebook.apk";
         #endregion

@@ -207,13 +207,9 @@
     <Compile Include="Controllers\LdPlayerController.cs" />
     <Compile Include="Controllers\ManagementController.cs" />
     <Compile Include="Controllers\SimController.cs" />
-    <Compile Include="Migrations\202002271615130_init.cs" />
-    <Compile Include="Migrations\202002271615130_init.Designer.cs">
-      <DependentUpon>202002271615130_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002271625259_nullAvatar.cs" />
-    <Compile Include="Migrations\202002271625259_nullAvatar.Designer.cs">
-      <DependentUpon>202002271625259_nullAvatar.cs</DependentUpon>
+    <Compile Include="Migrations\202002281529193_init.cs" />
+    <Compile Include="Migrations\202002281529193_init.Designer.cs">
+      <DependentUpon>202002281529193_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -248,11 +244,8 @@
     <Compile Include="Views\CreateAccount.Designer.cs">
       <DependentUpon>CreateAccount.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Migrations\202002271615130_init.resx">
-      <DependentUpon>202002271615130_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002271625259_nullAvatar.resx">
-      <DependentUpon>202002271625259_nullAvatar.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002281529193_init.resx">
+      <DependentUpon>202002281529193_init.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

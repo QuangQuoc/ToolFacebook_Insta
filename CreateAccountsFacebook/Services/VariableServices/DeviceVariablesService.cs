@@ -30,20 +30,20 @@ namespace CreateAccountsProject.Services
         public static void Initial()
         {
             CreateBotLive = true;
-            MyHostName = "QuangQuoc_01";
+            MyHostName = "VanSang_01";
             ThreadRunning = 0;
             TimeCreateDevice = 50;
             TimeRunDevice = 80;
             TimeInstallApp = 20;
             ConfigDevice = new LDProperty() { Cpu = "1", Memory = "1024", Imei = "", Resolution = "540,960,240" };
-            ApkPath = @"E:\02. Cong viec\Share_Quoc_Sang\DataKhongShare\02. File APK\FileAPK\";
+            ApkPath = @"C:\Users\Admin\Desktop\FileAPK\";
             ApkBrowserName = "Via0";
             ApkFacebookName = "NameFacebook.apk";
             DeviceIpsRunning = new List<string>();
-            LdDirectory = @"E:\ChangZhi\LDPlayer";
+            LdDirectory = @"C:\ChangZhi\LDPlayer"; 
             BrowserName = "mark.via.gp0";
             Password = "quocsang199698";
-            UseClipboard = true;
+            UseClipboard = false; 
         }
 
         public static void AddmaxThread(int mt)
