@@ -38,5 +38,50 @@ namespace CreateAccountsProject.Models
             BrowserFileName = brFileName;
             BrowserStatus = BrowserStatus;
         }
+
+        public void Update(Account acc)
+        {
+            if (acc.UserName != null)
+            {
+                UserName = acc.UserName;
+            }
+            if (acc.UserId != null)
+            {
+                UserId = acc.UserId;
+            }
+            if (acc.Password != null)
+            {
+                Password = acc.Password;
+            }
+            if (acc.Email != null)
+            {
+                Email = acc.Email;
+            }
+            if (acc.PhoneNumber != null)
+            {
+                PhoneNumber = acc.PhoneNumber;
+            }
+            if (acc.Fb2FACode != null)
+            {
+                Fb2FACode = acc.Fb2FACode;
+            }
+            if (acc.BrowserName != null)
+            {
+                BrowserName = acc.BrowserName;
+            }
+            if (acc.BrowserFileName != null)
+            {
+                BrowserFileName = acc.BrowserFileName;
+            }
+            BrowserStatus = acc.BrowserStatus;
+            if (acc.FullName != null)
+            {
+                FullName = acc.FullName;
+            }
+            if (acc.BirthDay != null)
+            {
+                BirthDay = acc.BirthDay;
+            }
+        }
     }
 }

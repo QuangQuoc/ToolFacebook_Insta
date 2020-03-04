@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using ControlLdPlayer.Repositories;
 
 namespace CreateAccountsProject.Controllers
 {
@@ -16,6 +17,7 @@ namespace CreateAccountsProject.Controllers
     {
         // Khai báo biến
         private DevicesRepository devicesRepo = new DevicesRepository();
+        private AccountsRepository accountsRepo = new AccountsRepository();
         private LdPlayerController ldControl = new LdPlayerController();
         private Device ld;
         private Random random = new Random();
@@ -104,19 +106,64 @@ namespace CreateAccountsProject.Controllers
                         {
                             runOk = true;
                         }
-                    }                    
-                    UpAddress();
-                    string uid = GetUserId();
-                    ld.Accounts[i].UserId = uid;
-                    string code2Fa = Setup2Fa();
-                    ld.Accounts[i].Fb2FACode = code2Fa;
-                    // Get link image
-                    var dataImage = HttpRequestService.RequestDicData(DeviceVariablesService.GetAvatarUrl);
-                    if (dataImage["success"] == true)
-                    {
-                        UpdateAvatar(dataImage["url"]);
                     }
-                    AddFriend();
+                    accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
+                    try
+                    {
+                        UpAddress();
+                    }
+                    catch (Exception)
+                    {
+                        ErrorService.UpdateAddress();
+                    }
+                    accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
+                    try
+                    {
+                        string uid = GetUserId();
+                        ld.Accounts[i].UserId = uid;
+                    }
+                    catch (Exception)
+                    {
+                        ErrorService.GetUserId();
+                    }
+                    accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
+                    try
+                    {
+                        string code2Fa = Setup2Fa();
+                        ld.Accounts[i].Fb2FACode = code2Fa;
+                    }
+                    catch (Exception)
+                    {
+                        ErrorService.Setup2Fa();
+                    }
+                    accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
+                    try
+                    {
+                        // Get link image
+                        var dataImage = HttpRequestService.RequestDicData(DeviceVariablesService.GetAvatarUrl);
+                        if (dataImage["success"] == true)
+                        {
+                            UpdateAvatar(dataImage["url"]);
+                        }
+                        else
+                        {
+                            ErrorService.GetUrlImage();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        ErrorService.UpdateAvatar();
+                    }
+                    accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
+                    try
+                    {
+                        AddFriend();
+                    }
+                    catch (Exception)
+                    {
+                        ErrorService.AddFriends();
+                    }
+                    accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
                     // Cập nhật dữ liệu vào Db
                     ld.ActivedAccounts++;
                     ld.Accounts[i].BrowserStatus = true;
