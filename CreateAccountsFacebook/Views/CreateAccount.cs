@@ -104,9 +104,9 @@ namespace CreateAccountsProject.Views
                 }
             }
 
-            Thread createThread = new Thread(manaCtrl.StartManagement);
-            //manaCtrl.StartManagement();
-            createThread.Start();
+            //Thread createThread = new Thread(manaCtrl.StartManagement);
+            manaCtrl.StartManagement();
+            //createThread.Start();
         }
 
         private void btnStop_Click(object sender, EventArgs e)
