@@ -22,7 +22,8 @@ namespace CreateAccountsProject.Repositories
         {
             var devices = context.Devices
                 .Include("Accounts")
-                .Where(d => d.ActivedAccounts <= 5)
+                .Include("Host")
+                .Where(d => d.ActivedAccounts < 5 && d.Host.Name == hostName)
                 .ToList();
             return devices;
         }

@@ -26,6 +26,11 @@ namespace CreateAccountsProject.Services.VariableServices
         public static Bitmap BMP_Next2Fa { get; set; }
         public static Bitmap BMP_EditCode2Fa { get; set; }
         public static Bitmap BMP_LoadLinkGetId { get; set; }
+        public static Bitmap BMP_SaveImage { get; set; }
+        public static Bitmap BMP_ConfirmSaveImage { get; set; }
+        public static Bitmap BMP_ChooseImage { get; set; }
+        public static Bitmap BMP_ConfirmUpAvatar { get; set; }
+        public static Bitmap BMP_CheckUpImage { get; set; }
 
         public static void Initial()
         {
@@ -54,6 +59,12 @@ namespace CreateAccountsProject.Services.VariableServices
             BMP_EditCode2Fa = (Bitmap)Bitmap.FromFile("Data/2Fa/button_editCode2Fa.png");
             // Get UID
             BMP_LoadLinkGetId = (Bitmap)Bitmap.FromFile("Data/GetUserId/button_loadLinkGetId.png");
+            // Up Avatar
+            BMP_SaveImage = (Bitmap)Bitmap.FromFile("Data/upInfo/button_saveImage.png");
+            BMP_ConfirmSaveImage = (Bitmap)Bitmap.FromFile("Data/upInfo/button_confirmSaveImage.png");
+            BMP_ChooseImage = (Bitmap)Bitmap.FromFile("Data/upInfo/button_chooseImage.png");
+            BMP_ConfirmUpAvatar = (Bitmap)Bitmap.FromFile("Data/upInfo/button_confirmUpAvatar.png");
+            BMP_CheckUpImage = (Bitmap)Bitmap.FromFile("Data/upInfo/button_checkUpImage.png");
         }
                              
     }

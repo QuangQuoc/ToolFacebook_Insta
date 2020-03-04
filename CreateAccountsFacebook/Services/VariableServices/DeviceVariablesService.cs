@@ -26,6 +26,8 @@ namespace CreateAccountsProject.Services
         public static string BrowserName { get; set; }
         public static string Password { get; set; }
         public static bool UseClipboard { get; set; }
+        // Server 2FA, Avatar
+        public static string GetAvatarUrl { get; set; }
 
         public static void Initial()
         {
@@ -36,14 +38,15 @@ namespace CreateAccountsProject.Services
             TimeRunDevice = 80;
             TimeInstallApp = 20;
             ConfigDevice = new LDProperty() { Cpu = "1", Memory = "1024", Imei = "", Resolution = "540,960,240" };
-            ApkPath = @"C:\Users\Admin\Desktop\FileAPK\";
+            ApkPath = @"E:\02. Cong viec\Share_Quoc_Sang\DataKhongShare\02. File APK\FileAPK\";
             ApkBrowserName = "Via0";
             ApkFacebookName = "NameFacebook.apk";
             DeviceIpsRunning = new List<string>();
-            LdDirectory = @"C:\ChangZhi\LDPlayer"; 
+            LdDirectory = @"E:\ChangZhi\LDPlayer"; 
             BrowserName = "mark.via.gp0";
             Password = "quocsang199698";
-            UseClipboard = false; 
+            UseClipboard = false;
+            GetAvatarUrl = "http://quocsang.ddns.net:3000/avatars";
         }
 
         public static void AddmaxThread(int mt)

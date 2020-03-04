@@ -35,8 +35,8 @@ namespace CreateAccountsProject.Controllers
             {
                 // Khởi động LD
                 LdPlayerService.Run(ld.Name);
-                //Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeRunDevice));
-                Thread.Sleep(TimeSpan.FromSeconds(5)); // TEST
+                Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeRunDevice));
+                //Thread.Sleep(TimeSpan.FromSeconds(5)); // TEST
             }
             // Run app
             // Kiểm tra số browser đã có tài khoản
@@ -107,9 +107,15 @@ namespace CreateAccountsProject.Controllers
                     UpAddress();
                     string uid = GetUserId();
                     ld.Accounts[i].UserId = uid;
-                    AddFriend();
                     string code2Fa = Setup2Fa();
                     ld.Accounts[i].Fb2FACode = code2Fa;
+                    // Get link image
+                    var dataImage = HttpRequestService.RequestDicData(DeviceVariablesService.GetAvatarUrl);
+                    if (dataImage["success"] == true)
+                    {
+                        UpdateAvatar(dataImage["url"]);
+                    }
+                    AddFriend();
                     // Cập nhật dữ liệu vào Db
                     ld.ActivedAccounts++;
                     ld.Accounts[i].BrowserStatus = true;
@@ -117,9 +123,7 @@ namespace CreateAccountsProject.Controllers
                 }
             }
             // Update Status
-            devicesRepo.UpdateStatus(ld.Id, false);
-            
-            //TESTING
+            devicesRepo.UpdateStatus(ld.Id, false);           
             LdPlayerService.Quit(ld.Name);
             DeviceVariablesService.ThreadRunning -= 1;
         }
@@ -611,6 +615,57 @@ namespace CreateAccountsProject.Controllers
             }
 
         }
+
+        /// <summary>
+        /// Cập nhập ảnh đại diện
+        /// </summary>
+        /// <param name="linkImage"></param>
+        /// <returns></returns>
+        public void UpdateAvatar(string linkImage)
+        {
+            string deviceID = ld.DeviceIp;
+            try
+            {
+                // Save Image
+                loadLink(link: linkImage);
+                KAutoHelper.ADBHelper.LongPress(deviceID, 243, 178, 1000);
+                Thread.Sleep(TimeSpan.FromSeconds(2));
+                var screen = KAutoHelper.ADBHelper.ScreenShoot(deviceID);
+                var compare_SaveImage = KAutoHelper.ImageScanOpenCV.FindOutPoint(screen, BMPVariablesService.BMP_SaveImage);
+                KAutoHelper.ADBHelper.Tap(deviceID, compare_SaveImage.Value.X, compare_SaveImage.Value.Y);
+                Thread.Sleep(TimeSpan.FromSeconds(2));
+                var screen1 = KAutoHelper.ADBHelper.ScreenShoot(deviceID);
+                var compare_ConfirmSaveImage = KAutoHelper.ImageScanOpenCV.FindOutPoint(screen1, BMPVariablesService.BMP_ConfirmSaveImage);
+                KAutoHelper.ADBHelper.Tap(deviceID, compare_ConfirmSaveImage.Value.X, compare_ConfirmSaveImage.Value.Y);
+                // Up avatar
+                loadLink(link: "https://mbasic.facebook.com/profile_picture");
+                // Click nút chọn ảnh 
+                var screen2 = KAutoHelper.ADBHelper.ScreenShoot(deviceID);
+                var compare_ChooseImage = KAutoHelper.ImageScanOpenCV.FindOutPoint(screen2, BMPVariablesService.BMP_ChooseImage);
+                KAutoHelper.ADBHelper.Tap(deviceID, compare_ChooseImage.Value.X, compare_ChooseImage.Value.Y);
+                Thread.Sleep(TimeSpan.FromSeconds(2));
+                // Kiểm tra có ở trong file ảnh gần đây không
+                var screen3 = KAutoHelper.ADBHelper.ScreenShoot(deviceID);
+                var compare_CheckUpImage = KAutoHelper.ImageScanOpenCV.FindOutPoint(screen3, BMPVariablesService.BMP_CheckUpImage);
+                if (compare_CheckUpImage == null)
+                {
+                    KAutoHelper.ADBHelper.TapByPercent(deviceID, 8.2, 8.7);
+                    Thread.Sleep(TimeSpan.FromSeconds(1));
+                }
+                // Chọn ảnh tải mới nhất
+                KAutoHelper.ADBHelper.TapByPercent(deviceID, 27.4, 17.8);
+                Thread.Sleep(TimeSpan.FromSeconds(1));
+                KAutoHelper.ADBHelper.TapByPercent(deviceID, 81.9, 17.8);
+                Thread.Sleep(TimeSpan.FromSeconds(1));
+                // xác nhận cập nhập avatar
+                var screen4 = KAutoHelper.ADBHelper.ScreenShoot(deviceID);
+                var compare_ConfirmUpAvatar = KAutoHelper.ImageScanOpenCV.FindOutPoint(screen4, BMPVariablesService.BMP_ConfirmUpAvatar);
+                KAutoHelper.ADBHelper.Tap(deviceID, compare_ConfirmUpAvatar.Value.X, compare_ConfirmUpAvatar.Value.Y);
+
+            }
+            catch { }
+        }
+
         /// <summary>
         /// Hàm load link 
         /// </summary>
