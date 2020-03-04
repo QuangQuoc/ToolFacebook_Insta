@@ -33,7 +33,7 @@ namespace CreateAccountsProject.Controllers
             Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeCreateDevice));
             // Config device
             LdPlayerService.PropertySetting(device.Name, DeviceVariablesService.ConfigDevice);
-            Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeCreateDevice));
+            Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeConfigDevice));
             // Rundevice
             LdPlayerService.Run(device.Name);
             Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeRunDevice));

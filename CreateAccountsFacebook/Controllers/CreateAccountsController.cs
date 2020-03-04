@@ -35,12 +35,13 @@ namespace CreateAccountsProject.Controllers
             {
                 // Khởi động LD
                 LdPlayerService.Run(ld.Name);
-                Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeRunDevice));
-                //Thread.Sleep(TimeSpan.FromSeconds(5)); // TEST
+                //Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeRunDevice));
+                Thread.Sleep(TimeSpan.FromSeconds(5)); // TEST
             }
             // Run app
             // Kiểm tra số browser đã có tài khoản
             // Trong LD đã có thông tin Browser
+            ld.Accounts = ld.Accounts.OrderBy(a => a.Id).ToList();
             for (int i = 0; i < ld.Accounts.Count; i++)
             {
                 // TH: Nếu Browser chưa được sử dụng
@@ -350,7 +351,7 @@ namespace CreateAccountsProject.Controllers
                 string[] nameFriend = { "Linh", "manh", "thuong", "hoai", "sang", "quoc", "vu", "tuan", "nga", "hung",
                                     "Dong", "ly", "tan", "mai", "Nhi", "Hoai", "Thanh", "Cat", "Trang", "Thao", "Nguyen"};
                 Thread.Sleep(TimeSpan.FromSeconds(5));
-                for (int i = 0; i <= 2; i++)
+                for (int i = 0; i <= 5; i++)
                 {
                     loadLink("https://mbasic.facebook.com/friends/center/search");
                     KAutoHelper.ADBHelper.TapByPercent(deviceID, 16.4, 37.6);
@@ -358,14 +359,14 @@ namespace CreateAccountsProject.Controllers
                     Thread.Sleep(TimeSpan.FromSeconds(1));
                     KAutoHelper.ADBHelper.Key(deviceID, KAutoHelper.ADBKeyEvent.KEYCODE_ENTER);
                     Thread.Sleep(TimeSpan.FromSeconds(5));
-                    for (int j = 0; j <= 5; j++)
+                    for (int j = 0; j < 1; j++)
                     {
                         try
                         {
                             var screen = KAutoHelper.ADBHelper.ScreenShoot(deviceID);
                             var compare_addFriend = KAutoHelper.ImageScanOpenCV.FindOutPoint(screen, BMPVariablesService.BMP_AddFriend);
                             KAutoHelper.ADBHelper.Tap(deviceID, compare_addFriend.Value.X, compare_addFriend.Value.Y);
-                            Thread.Sleep(TimeSpan.FromSeconds(random.Next(100, 130)));
+                            Thread.Sleep(TimeSpan.FromSeconds(random.Next(60, 100)));
                         }
                         catch { break; }
                     }
@@ -458,6 +459,8 @@ namespace CreateAccountsProject.Controllers
                 staThread.SetApartmentState(ApartmentState.STA);
                 staThread.Start();
                 staThread.Join();
+                Thread.Sleep(TimeSpan.FromSeconds(1));
+                KAutoHelper.ADBHelper.Key(deviceID, KAutoHelper.ADBKeyEvent.KEYCODE_ENTER);
                 // Tách Uid từ link
                 string Uid = null;
                 foreach (string value in Regex.Split(linkURL, @"\D+"))
@@ -661,6 +664,7 @@ namespace CreateAccountsProject.Controllers
                 var screen4 = KAutoHelper.ADBHelper.ScreenShoot(deviceID);
                 var compare_ConfirmUpAvatar = KAutoHelper.ImageScanOpenCV.FindOutPoint(screen4, BMPVariablesService.BMP_ConfirmUpAvatar);
                 KAutoHelper.ADBHelper.Tap(deviceID, compare_ConfirmUpAvatar.Value.X, compare_ConfirmUpAvatar.Value.Y);
+                Thread.Sleep(TimeSpan.FromSeconds(5));
 
             }
             catch { }

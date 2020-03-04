@@ -41,7 +41,7 @@ namespace CreateAccountsProject.Repositories
             {
                 Device device = context.Devices
                 .Include(d => d.Accounts)
-                .Where(d => d.Id == d.Id)
+                .Where(d => d.Id == dv.Id)
                 .FirstOrDefault();
                 if (device != null)
                 {
