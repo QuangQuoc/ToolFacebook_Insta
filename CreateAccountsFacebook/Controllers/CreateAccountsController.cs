@@ -37,8 +37,8 @@ namespace CreateAccountsProject.Controllers
             {
                 // Khởi động LD
                 LdPlayerService.Run(ld.Name);
-                //Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeRunDevice));
-                Thread.Sleep(TimeSpan.FromSeconds(5)); // TEST
+                Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeRunDevice));
+                //Thread.Sleep(TimeSpan.FromSeconds(5)); // TEST
             }
             // Run app
             // Kiểm tra số browser đã có tài khoản
