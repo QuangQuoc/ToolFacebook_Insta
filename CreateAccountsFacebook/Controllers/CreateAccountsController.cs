@@ -37,7 +37,7 @@ namespace CreateAccountsProject.Controllers
             {
                 // Khởi động LD
                 LdPlayerService.Run(ld.Name);
-                Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeRunDevice));
+                Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeRestartDevice));
                 //Thread.Sleep(TimeSpan.FromSeconds(5)); // TEST
             }
             // Run app
@@ -108,15 +108,16 @@ namespace CreateAccountsProject.Controllers
                         }
                     }
                     accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
-                    try
-                    {
-                        UpAddress();
-                    }
-                    catch (Exception)
-                    {
-                        ErrorService.UpdateAddress();
-                    }
-                    accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
+                    CheckStopEvent();
+                    //try
+                    //{
+                    //    UpAddress();
+                    //}
+                    //catch (Exception)
+                    //{
+                    //    ErrorService.UpdateAddress();
+                    //}
+                    //accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
                     try
                     {
                         string uid = GetUserId();
@@ -127,6 +128,7 @@ namespace CreateAccountsProject.Controllers
                         ErrorService.GetUserId();
                     }
                     accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
+                    CheckStopEvent();
                     try
                     {
                         string code2Fa = Setup2Fa();
@@ -137,6 +139,7 @@ namespace CreateAccountsProject.Controllers
                         ErrorService.Setup2Fa();
                     }
                     accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
+                    CheckStopEvent();
                     try
                     {
                         // Get link image
@@ -155,6 +158,7 @@ namespace CreateAccountsProject.Controllers
                         ErrorService.UpdateAvatar();
                     }
                     accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
+                    CheckStopEvent();
                     try
                     {
                         AddFriend();
@@ -164,6 +168,7 @@ namespace CreateAccountsProject.Controllers
                         ErrorService.AddFriends();
                     }
                     accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
+                    CheckStopEvent();
                     // Cập nhật dữ liệu vào Db
                     ld.ActivedAccounts++;
                     ld.Accounts[i].BrowserStatus = true;
@@ -174,6 +179,14 @@ namespace CreateAccountsProject.Controllers
             devicesRepo.UpdateStatus(ld.Id, false);           
             LdPlayerService.Quit(ld.Name);
             DeviceVariablesService.ThreadRunning -= 1;
+        }
+
+        public void CheckStopEvent()
+        {
+            if (!DeviceVariablesService.CreateBotLive)
+            {
+                Thread.CurrentThread.Abort();
+            }
         }
 
         /// <summary>
