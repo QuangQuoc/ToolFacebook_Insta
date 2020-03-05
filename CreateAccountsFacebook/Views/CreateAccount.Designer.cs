@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateAccount));
             this.label1 = new System.Windows.Forms.Label();
             this.tbxSoLuong = new System.Windows.Forms.TextBox();
             this.btnRun = new System.Windows.Forms.Button();
@@ -248,9 +249,11 @@
             this.Controls.Add(this.btnRun);
             this.Controls.Add(this.tbxSoLuong);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CreateAccount";
             this.Text = "CreateAccount";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateAccount_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

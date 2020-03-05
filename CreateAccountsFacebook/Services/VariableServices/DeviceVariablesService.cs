@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CreateAccountsProject.Services
@@ -13,6 +14,7 @@ namespace CreateAccountsProject.Services
         public static Host MyHost { get; set; }
         public static string MyHostName { get; set; }
         public static int ThreadRunning { get; set; }
+        public static List<Thread> ThreadsRunning { get; set; }
         public static bool CreateBotLive { get; set; }
         public static int TimeCreateDevice { get; set; }
         public static int TimeRunDevice { get; set; }
@@ -37,6 +39,7 @@ namespace CreateAccountsProject.Services
             CreateBotLive = true;
             MyHostName = "QuangQuoc_01";
             ThreadRunning = 0;
+            ThreadsRunning = new List<Thread>();
             TimeCreateDevice = 30;
             TimeConfigDevice = 50;
             TimeRunDevice = 240;

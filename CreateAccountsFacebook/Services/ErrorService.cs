@@ -50,5 +50,12 @@ namespace CreateAccountsProject.Services
             MessageBox.Show("Lỗi thêm bạn bè", "Lỗi Tạo tài khoản", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion
+
+        #region Thread Error
+        public static void AbortThread(Exception e)
+        {
+            MessageBox.Show("Lỗi hủy Thread", "Lỗi Thread", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        #endregion
     }
 }

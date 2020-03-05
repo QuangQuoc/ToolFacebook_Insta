@@ -74,6 +74,7 @@ namespace CreateAccountsProject.Controllers
             Thread thread = new Thread(createAccoutsLd.CreateAccountsLD);
             DeviceVariablesService.ThreadRunning += 1;
             thread.Start();
+            DeviceVariablesService.ThreadsRunning.Add(thread);
         }
     }
 }
