@@ -103,11 +103,33 @@ namespace CreateAccountsProject.Views
             Thread createThread = new Thread(manaCtrl.StartManagement);
             //manaCtrl.StartManagement();
             createThread.Start();
+            DeviceVariablesService.ThreadsRunning.Add(createThread);
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
+            StopProject();
+        }
+
+        private void CreateAccount_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            StopProject();
+        }
+
+        private void StopProject()
+        {
             DeviceVariablesService.CreateBotLive = false;
+            foreach (var thread in DeviceVariablesService.ThreadsRunning)
+            {
+                try
+                {
+                    thread.Abort();
+                }
+                catch (Exception ex)
+                {
+                    ErrorService.AbortThread(ex);
+                }
+            }
         }
     }
 }

@@ -6,14 +6,8 @@ E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\ControlLdPlayer\obj\Debug\Cr
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\ControlLdPlayer\obj\Debug\ControlLdPlayer.exe
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\ControlLdPlayer\obj\Debug\ControlLdPlayer.pdb
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Debug\CreateAccountsProject.csprojAssemblyReference.cache
-E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Debug\ControlLdPlayer.Properties.Resources.resources
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Debug\CreateAccountsProject.Views.CreateAccount.resources
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Debug\CreateAccountsProject.csproj.GenerateResource.cache
-E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Debug\ControlLdPlayer.exe
-E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Debug\ControlLdPlayer.pdb
-E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\ControlLdPlayer.exe.config
-E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\ControlLdPlayer.exe
-E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\ControlLdPlayer.pdb
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\EntityFramework.dll
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\EntityFramework.SqlServer.dll
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\KAutoHelper.dll
@@ -206,3 +200,9 @@ C:\Users\Admin\Desktop\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\MySql
 C:\Users\Admin\Desktop\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\MySql.Data.xml
 C:\Users\Admin\Desktop\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\MySql.Data.Entity.EF6.xml
 C:\Users\Admin\Desktop\ToolFacebook_Insta\CreateAccountsFacebook\obj\Debug\ControlLdPlayer.Migrations.init.resources
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\CreateAccountsProject.exe.config
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\CreateAccountsProject.exe
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\CreateAccountsProject.pdb
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Debug\CreateAccountsProject.Properties.Resources.resources
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Debug\CreateAccountsProject.exe
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Debug\CreateAccountsProject.pdb
