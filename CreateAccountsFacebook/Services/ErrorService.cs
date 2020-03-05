@@ -51,6 +51,10 @@ namespace CreateAccountsProject.Services
         }
         #endregion
 
+        public static void AdbKteam(Exception e)
+        {
+            MessageBox.Show(e.ToString(), "Lỗi xử lý ADB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
         #region Thread Error
         public static void AbortThread(Exception e)
         {
