@@ -124,6 +124,11 @@ namespace CreateAccountsProject.Views
                 try
                 {
                     thread.Abort();
+                    thread.Interrupt();
+                }
+                catch (ThreadInterruptedException ex)
+                {
+                    ErrorService.AbortThread(ex);
                 }
                 catch (Exception ex)
                 {

@@ -1,6 +1,3 @@
-E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Release\ControlLdPlayer.exe.config
-E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Release\ControlLdPlayer.exe
-E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Release\ControlLdPlayer.pdb
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Release\BouncyCastle.Crypto.dll
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Release\Clipboard.Abstraction.dll
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Release\Clipboard.dll
@@ -92,9 +89,12 @@ E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\R
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Release\System.Text.Encodings.Web.xml
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Release\CreateAccountsProject.csprojAssemblyReference.cache
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Release\ControlLdPlayer.Migrations.init.resources
-E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Release\ControlLdPlayer.Properties.Resources.resources
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Release\CreateAccountsProject.Views.CreateAccount.resources
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Release\CreateAccountsProject.csproj.GenerateResource.cache
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Release\CreateAccountsProject.csproj.CopyComplete
-E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Release\ControlLdPlayer.exe
-E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Release\ControlLdPlayer.pdb
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Release\CreateAccountsProject.exe.config
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Release\CreateAccountsProject.exe
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Release\CreateAccountsProject.pdb
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Release\CreateAccountsProject.Properties.Resources.resources
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Release\CreateAccountsProject.exe
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Release\CreateAccountsProject.pdb
