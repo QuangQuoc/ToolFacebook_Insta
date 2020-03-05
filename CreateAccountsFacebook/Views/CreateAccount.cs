@@ -36,10 +36,6 @@ namespace CreateAccountsProject.Views
             // Đọc số luồng nhập vào và đưa vào biến static
             int thread = Int16.Parse(tbxSoLuong.Text);
             DeviceVariablesService.MaxThread = thread;
-            if (tbxApkPath.Text != "")
-            {
-                DeviceVariablesService.ApkPath = tbxApkPath.Text;
-            }
             if (tbxLdPath.Text != "")
             {
                 DeviceVariablesService.LdDirectory = tbxLdPath.Text;
@@ -63,7 +59,7 @@ namespace CreateAccountsProject.Views
             {
                 try
                 {
-                    DeviceVariablesService.TimeRunDevice = Int16.Parse(tbxTimeRestart.Text);
+                    DeviceVariablesService.TimeRestartDevice = Int16.Parse(tbxTimeRestart.Text);
                 }
                 catch (Exception)
                 {
@@ -74,7 +70,7 @@ namespace CreateAccountsProject.Views
             {
                 try
                 {
-                    DeviceVariablesService.TimeRunDevice = Int16.Parse(tbxTimeCreate.Text);
+                    DeviceVariablesService.TimeCreateDevice = Int16.Parse(tbxTimeCreate.Text);
                 }
                 catch (Exception)
                 {
@@ -85,7 +81,7 @@ namespace CreateAccountsProject.Views
             {
                 try
                 {
-                    DeviceVariablesService.TimeRunDevice = Int16.Parse(tbxTimeInstall.Text);
+                    DeviceVariablesService.TimeInstallApp = Int16.Parse(tbxTimeInstall.Text);
                 }
                 catch (Exception)
                 {
@@ -96,7 +92,7 @@ namespace CreateAccountsProject.Views
             {
                 try
                 {
-                    DeviceVariablesService.TimeRunDevice = Int16.Parse(tbxTimeConfig.Text);
+                    DeviceVariablesService.TimeConfigDevice = Int16.Parse(tbxTimeConfig.Text);
                 }
                 catch (Exception)
                 {
@@ -104,9 +100,9 @@ namespace CreateAccountsProject.Views
                 }
             }
 
-            //Thread createThread = new Thread(manaCtrl.StartManagement);
-            manaCtrl.StartManagement();
-            //createThread.Start();
+            Thread createThread = new Thread(manaCtrl.StartManagement);
+            //manaCtrl.StartManagement();
+            createThread.Start();
         }
 
         private void btnStop_Click(object sender, EventArgs e)

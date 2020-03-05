@@ -146,7 +146,8 @@ namespace CreateAccountsProject.Controllers
                         var dataImage = HttpRequestService.RequestDicData(DeviceVariablesService.GetAvatarUrl);
                         if (dataImage["success"] == true)
                         {
-                            UpdateAvatar(dataImage["url"]);
+                            string imageUrl = DeviceVariablesService.HostServerSuport + dataImage["url"];
+                            UpdateAvatar(imageUrl);
                         }
                         else
                         {
