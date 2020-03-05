@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CreateAccountsProject.Services
@@ -30,19 +31,22 @@ namespace CreateAccountsProject.Services
         public static bool UseClipboard { get; set; }
         // Server 2FA, Avatar
         public static string GetAvatarUrl { get; set; }
+        public static string ServerHostName { get; set; }
+        public static List<Thread> ThreadsRunning { get; set; }
 
         public static void Initial()
         {
             CreateBotLive = true;
             MyHostName = "QuangQuoc_01";
             ThreadRunning = 0;
+            ThreadsRunning = new List<Thread>();
             TimeCreateDevice = 30;
             TimeConfigDevice = 50;
             TimeRunDevice = 240;
             TimeRestartDevice = 100;
             TimeInstallApp = 30;
             ConfigDevice = new LDProperty() { Cpu = "1", Memory = "1024", Imei = "", Resolution = "540,960,240" };
-            ApkPath = @"E:\02. Cong viec\Share_Quoc_Sang\DataKhongShare\02. File APK\FileAPK\";
+            ApkPath = Environment.CurrentDirectory + @"\APK\";
         
             ApkBrowserName = "Via0";
             ApkFacebookName = "NameFacebook.apk";
@@ -51,7 +55,8 @@ namespace CreateAccountsProject.Services
             BrowserName = "mark.via.gp0";
             Password = "quocsang199698";
             UseClipboard = false;
-            GetAvatarUrl = "http://quocsang.ddns.net:3000/avatars";
+            GetAvatarUrl = ServerHostName + "/avatars";
+            ServerHostName = "http://quocsang.ddns.net:3000";
         }
 
         public static void AddmaxThread(int mt)

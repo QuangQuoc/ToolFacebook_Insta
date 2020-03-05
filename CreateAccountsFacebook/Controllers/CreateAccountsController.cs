@@ -146,7 +146,8 @@ namespace CreateAccountsProject.Controllers
                         var dataImage = HttpRequestService.RequestDicData(DeviceVariablesService.GetAvatarUrl);
                         if (dataImage["success"] == true)
                         {
-                            UpdateAvatar(dataImage["url"]);
+                            string url = DeviceVariablesService.ServerHostName + dataImage["url"];
+                            UpdateAvatar(url);
                         }
                         else
                         {
@@ -206,9 +207,10 @@ namespace CreateAccountsProject.Controllers
                 DelayService.Seconds(1);
                 KAutoHelper.ADBHelper.Tap(deviceID, compare_firstName.Value.X, compare_firstName.Value.Y);
             }
-            catch
+            catch(Exception e)
             {
                 KAutoHelper.ADBHelper.TapByPercent(deviceID, 48.6, 23.7);
+                ErrorService.AdbKteam(e);
             }
             DelayService.Seconds(1);
             // Load vào web đăng ký
@@ -234,9 +236,10 @@ namespace CreateAccountsProject.Controllers
                     DelayService.Seconds(1);
                     KAutoHelper.ADBHelper.Tap(deviceID, compare_lastNameFemale.Value.X, compare_lastNameFemale.Value.Y);
                 }
-                catch
+                catch(Exception e)
                 {
                     KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.1, 32.1);
+                    ErrorService.AdbKteam(e);
                 }
                 DelayService.Seconds(1);
                 // Vào lại trang đăng ký

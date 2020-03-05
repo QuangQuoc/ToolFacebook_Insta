@@ -36,10 +36,6 @@ namespace CreateAccountsProject.Views
             // Đọc số luồng nhập vào và đưa vào biến static
             int thread = Int16.Parse(tbxSoLuong.Text);
             DeviceVariablesService.MaxThread = thread;
-            if (tbxApkPath.Text != "")
-            {
-                DeviceVariablesService.ApkPath = tbxApkPath.Text;
-            }
             if (tbxLdPath.Text != "")
             {
                 DeviceVariablesService.LdDirectory = tbxLdPath.Text;
@@ -104,14 +100,44 @@ namespace CreateAccountsProject.Views
                 }
             }
 
-            //Thread createThread = new Thread(manaCtrl.StartManagement);
-            manaCtrl.StartManagement();
-            //createThread.Start();
+            Thread createThread = new Thread(manaCtrl.StartManagement);
+            //manaCtrl.StartManagement();
+            createThread.Start();
+            DeviceVariablesService.ThreadsRunning.Add(createThread);
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
             DeviceVariablesService.CreateBotLive = false;
+            foreach (var thread in DeviceVariablesService.ThreadsRunning)
+            {
+                try
+                {
+                    thread.Abort();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    ErrorService.AbortThread();
+                }
+            }
+        }
+
+        private void CreateAccount_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DeviceVariablesService.CreateBotLive = false;
+            foreach (var thread in DeviceVariablesService.ThreadsRunning)
+            {
+                try
+                {
+                    thread.Abort();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    ErrorService.AbortThread();
+                }
+            }
         }
     }
 }
