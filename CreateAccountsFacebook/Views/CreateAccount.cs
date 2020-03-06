@@ -127,7 +127,25 @@ namespace CreateAccountsProject.Views
                 }
                 catch (Exception ex)
                 {
-                    ErrorService.AbortThread(ex);
+                    MessageBox.Show(ex.ToString());
+                    ErrorService.AbortThread();
+                }
+            }
+        }
+
+        private void CreateAccount_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DeviceVariablesService.CreateBotLive = false;
+            foreach (var thread in DeviceVariablesService.ThreadsRunning)
+            {
+                try
+                {
+                    thread.Abort();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    ErrorService.AbortThread();
                 }
             }
         }

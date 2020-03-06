@@ -71,7 +71,11 @@
             // 
             // btnRun
             // 
+<<<<<<< HEAD
             this.btnRun.Location = new System.Drawing.Point(139, 139);
+=======
+            this.btnRun.Location = new System.Drawing.Point(155, 139);
+>>>>>>> Feature-Management
             this.btnRun.Margin = new System.Windows.Forms.Padding(2);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(76, 23);
@@ -100,7 +104,11 @@
             // 
             // btnStop
             // 
+<<<<<<< HEAD
             this.btnStop.Location = new System.Drawing.Point(265, 139);
+=======
+            this.btnStop.Location = new System.Drawing.Point(309, 139);
+>>>>>>> Feature-Management
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 7;
@@ -140,7 +148,11 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(473, 12);
             this.groupBox1.Name = "groupBox1";
+<<<<<<< HEAD
             this.groupBox1.Size = new System.Drawing.Size(256, 163);
+=======
+            this.groupBox1.Size = new System.Drawing.Size(256, 167);
+>>>>>>> Feature-Management
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ConfigDevice";
@@ -239,7 +251,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(743, 180);
+=======
+            this.ClientSize = new System.Drawing.Size(743, 184);
+>>>>>>> Feature-Management
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tbxHostName);
             this.Controls.Add(this.label3);
@@ -252,7 +268,12 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CreateAccount";
+<<<<<<< HEAD
             this.Text = "CreateAccount";
+=======
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Tool Create Fb";
+>>>>>>> Feature-Management
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateAccount_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

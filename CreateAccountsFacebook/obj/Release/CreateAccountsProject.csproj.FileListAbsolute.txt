@@ -90,7 +90,6 @@ E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\R
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Release\System.Numerics.Vectors.xml
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Release\System.Runtime.CompilerServices.Unsafe.xml
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Release\System.Text.Encodings.Web.xml
-E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Release\CreateAccountsProject.csprojAssemblyReference.cache
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Release\ControlLdPlayer.Migrations.init.resources
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Release\ControlLdPlayer.Properties.Resources.resources
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Release\CreateAccountsProject.Views.CreateAccount.resources
@@ -98,3 +97,4 @@ E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\R
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Release\CreateAccountsProject.csproj.CopyComplete
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Release\ControlLdPlayer.exe
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Release\ControlLdPlayer.pdb
+E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\obj\Release\CreateAccountsProject.csprojAssemblyReference.cache

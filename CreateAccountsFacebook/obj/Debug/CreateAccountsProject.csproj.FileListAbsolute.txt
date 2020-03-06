@@ -94,7 +94,6 @@ E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\D
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\System.Numerics.Vectors.xml
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\System.Text.Encodings.Web.xml
-E:\02. Cong viec\Share_Quoc_Sang\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\Emgu.CV.World.dll
 C:\Users\Admin\Desktop\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\ControlLdPlayer.exe.config
 C:\Users\Admin\Desktop\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\ControlLdPlayer.exe
 C:\Users\Admin\Desktop\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\ControlLdPlayer.pdb
