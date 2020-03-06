@@ -46,8 +46,8 @@ namespace CreateAccountsProject.Repositories
                 if (device != null)
                 {
                     device.ActivedAccounts = dv.ActivedAccounts;
-                    device.Accounts[indexBrowser].BrowserStatus = true;
-                    device.Accounts[indexBrowser] = dv.Accounts[indexBrowser];
+                    //device.Accounts[indexBrowser].BrowserStatus = true;
+                    //device.Accounts[indexBrowser] = dv.Accounts[indexBrowser];
                     context.SaveChanges();
                     return true;
                 }
