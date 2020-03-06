@@ -57,9 +57,9 @@ namespace CreateAccountsProject.Services
             BrowserName = "mark.via.gp0";
             PackageNameFbName = "com.example.namefacebook";
             Password = "quocsang199698";
-            UseClipboard = false;
-            GetAvatarUrl = HostServerSuport + "/avatars";
+            UseClipboard = false;           
             HostServerSuport = "http://quocsang.ddns.net:3000";
+            GetAvatarUrl = HostServerSuport + "/avatars";
         }
 
         public static void AddmaxThread(int mt)

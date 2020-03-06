@@ -175,6 +175,7 @@ namespace CreateAccountsProject.Controllers
                     ld.ActivedAccounts++;                  
                     devicesRepo.UpdateNewAccount(ld, i);
                 }
+                Thread.Sleep(30);
             }
             // Update Status
             devicesRepo.UpdateStatus(ld.Id, false);           
