@@ -28,6 +28,7 @@ namespace CreateAccountsProject.Services
         public static string ApkFacebookName { get; set; }
         public static string LdDirectory { get; set; }
         public static string BrowserName { get; set; }
+        public static string PackageNameFbName { get; set; }
         public static string Password { get; set; }
         public static bool UseClipboard { get; set; }
         // Server 2FA, Avatar
@@ -62,7 +63,9 @@ namespace CreateAccountsProject.Services
             DeviceIpsRunning = new List<string>();
             LdDirectory = @"C:\LDPlayer"; 
             BrowserName = "mark.via.gp0";
+            PackageNameFbName = "com.example.namefacebook";
             Password = "quocsang199698";
+<<<<<<< HEAD
             UseClipboard = false;
 <<<<<<< HEAD
             GetAvatarUrl = HostServerSuport + "/avatars";
@@ -71,6 +74,11 @@ namespace CreateAccountsProject.Services
             GetAvatarUrl = ServerHostName + "/avatars";
             ServerHostName = "http://quocsang.ddns.net:3000";
 >>>>>>> Feature-Management
+=======
+            UseClipboard = false;           
+            HostServerSuport = "http://quocsang.ddns.net:3000";
+            GetAvatarUrl = HostServerSuport + "/avatars";
+>>>>>>> Feature-CreateFileSetup
         }
 
         public static void AddmaxThread(int mt)

@@ -107,6 +107,7 @@ namespace CreateAccountsProject.Controllers
                             runOk = true;
                         }
                     }
+                    ld.Accounts[i].BrowserStatus = true;
                     accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
                     CheckStopEvent();
                     //try
@@ -176,10 +177,10 @@ namespace CreateAccountsProject.Controllers
                     accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
                     CheckStopEvent();
                     // Cập nhật dữ liệu vào Db
-                    ld.ActivedAccounts++;
-                    ld.Accounts[i].BrowserStatus = true;
+                    ld.ActivedAccounts++;                  
                     devicesRepo.UpdateNewAccount(ld, i);
                 }
+                Thread.Sleep(30);
             }
             // Update Status
             devicesRepo.UpdateStatus(ld.Id, false);           
@@ -202,8 +203,10 @@ namespace CreateAccountsProject.Controllers
         public void AddAccountName(string browserName)
         {
             string deviceID = ld.DeviceIp;
+            string deviceName = ld.Name;
             // Set họ 
-            KAutoHelper.ADBHelper.ExecuteCMD("adb shell monkey -p com.example.namefacebook -c android.intent.category.LAUNCHER 1");
+            //KAutoHelper.ADBHelper.ExecuteCMD("adb shell monkey -p com.example.namefacebook -c android.intent.category.LAUNCHER 1");
+            LdPlayerService.RunApp(deviceName, DeviceVariablesService.PackageNameFbName);
             DelayService.Seconds(5);
             try
             {
@@ -212,14 +215,19 @@ namespace CreateAccountsProject.Controllers
                 DelayService.Seconds(1);
                 KAutoHelper.ADBHelper.Tap(deviceID, compare_firstName.Value.X, compare_firstName.Value.Y);
             }
+<<<<<<< HEAD
             catch(Exception e)
+=======
+            catch (Exception e)
+>>>>>>> Feature-CreateFileSetup
             {
                 KAutoHelper.ADBHelper.TapByPercent(deviceID, 48.6, 23.7);
                 ErrorService.AdbKteam(e);
             }
             DelayService.Seconds(1);
             // Load vào web đăng ký
-            KAutoHelper.ADBHelper.ExecuteCMD($"adb shell monkey -p {browserName} -c android.intent.category.LAUNCHER 1");
+            //KAutoHelper.ADBHelper.ExecuteCMD($"adb shell monkey -p {browserName} -c android.intent.category.LAUNCHER 1");
+            LdPlayerService.RunApp(deviceName, browserName);
             DelayService.Seconds(5);
             loadLink("https://mbasic.facebook.com/reg");
             DelayService.Seconds(2);
@@ -232,7 +240,8 @@ namespace CreateAccountsProject.Controllers
             if (random.Next(2) == 0)
             {
                 // Set tên nữ
-                KAutoHelper.ADBHelper.ExecuteCMD("adb shell monkey -p com.example.namefacebook -c android.intent.category.LAUNCHER 1");
+                //KAutoHelper.ADBHelper.ExecuteCMD("adb shell monkey -p com.example.namefacebook -c android.intent.category.LAUNCHER 1");
+                LdPlayerService.RunApp(deviceName, DeviceVariablesService.PackageNameFbName);
                 DelayService.Seconds(5);
                 try
                 {
@@ -241,14 +250,19 @@ namespace CreateAccountsProject.Controllers
                     DelayService.Seconds(1);
                     KAutoHelper.ADBHelper.Tap(deviceID, compare_lastNameFemale.Value.X, compare_lastNameFemale.Value.Y);
                 }
+<<<<<<< HEAD
                 catch(Exception e)
+=======
+                catch (Exception e)
+>>>>>>> Feature-CreateFileSetup
                 {
                     KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.1, 32.1);
                     ErrorService.AdbKteam(e);
                 }
                 DelayService.Seconds(1);
                 // Vào lại trang đăng ký
-                KAutoHelper.ADBHelper.ExecuteCMD($"adb shell monkey -p {browserName} -c android.intent.category.LAUNCHER 1");
+                //KAutoHelper.ADBHelper.ExecuteCMD($"adb shell monkey -p {browserName} -c android.intent.category.LAUNCHER 1");
+                LdPlayerService.RunApp(deviceName, browserName);
                 DelayService.Seconds(5);
                 // Get tên nữ
                 KAutoHelper.ADBHelper.LongPress(deviceID, 100, 333, 1000);
@@ -260,7 +274,8 @@ namespace CreateAccountsProject.Controllers
             else
             {
                 // Set tên nam
-                KAutoHelper.ADBHelper.ExecuteCMD("adb shell monkey -p com.example.namefacebook -c android.intent.category.LAUNCHER 1");
+                //KAutoHelper.ADBHelper.ExecuteCMD("adb shell monkey -p com.example.namefacebook -c android.intent.category.LAUNCHER 1");
+                LdPlayerService.RunApp(deviceName, DeviceVariablesService.PackageNameFbName);
                 DelayService.Seconds(5);
                 try
                 {
@@ -269,12 +284,14 @@ namespace CreateAccountsProject.Controllers
                     DelayService.Seconds(1);
                     KAutoHelper.ADBHelper.Tap(deviceID, compare_lastNameMale.Value.X, compare_lastNameMale.Value.Y);
                 }
-                catch
+                catch (Exception e)
                 {
                     KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.1, 39.9);
+                    ErrorService.AdbKteam(e);
                 }
                 DelayService.Seconds(1);
-                KAutoHelper.ADBHelper.ExecuteCMD($"adb shell monkey -p {browserName} -c android.intent.category.LAUNCHER 1");
+                //KAutoHelper.ADBHelper.ExecuteCMD($"adb shell monkey -p {browserName} -c android.intent.category.LAUNCHER 1");
+                LdPlayerService.RunApp(deviceName, browserName);
                 DelayService.Seconds(5);
                 // Get tên nam
                 KAutoHelper.ADBHelper.LongPress(deviceID, 100, 333, 1000);

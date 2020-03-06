@@ -32,7 +32,6 @@ namespace CreateAccountsProject.Views
         private void btnRun_Click(object sender, EventArgs e)
         {
             //TEST
-
             // Đọc số luồng nhập vào và đưa vào biến static
             int thread = Int16.Parse(tbxSoLuong.Text);
             DeviceVariablesService.MaxThread = thread;
@@ -53,7 +52,7 @@ namespace CreateAccountsProject.Views
                 catch (Exception)
                 {
                     MessageBox.Show("Điền chữ số vào đây", "Error Config", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }  
+                }
             }
             if (tbxTimeRestart.Text != "")
             {
@@ -100,6 +99,7 @@ namespace CreateAccountsProject.Views
                 }
             }
 
+            DeviceVariablesService.CreateBotLive = true;
             Thread createThread = new Thread(manaCtrl.StartManagement);
             //manaCtrl.StartManagement();
             createThread.Start();
@@ -124,6 +124,11 @@ namespace CreateAccountsProject.Views
                 try
                 {
                     thread.Abort();
+                    thread.Interrupt();
+                }
+                catch (ThreadInterruptedException ex)
+                {
+                    ErrorService.AbortThread(ex);
                 }
                 catch (Exception ex)
                 {
@@ -148,6 +153,7 @@ namespace CreateAccountsProject.Views
                     ErrorService.AbortThread();
                 }
             }
+            DeviceVariablesService.ThreadRunning = 0;
         }
     }
 }
