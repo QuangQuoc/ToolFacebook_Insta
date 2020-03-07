@@ -50,6 +50,9 @@ namespace CreateAccountsProject.Controllers
             // Thêm thông tin deviceIp đang chạy
             DeviceVariablesService.DeviceIpsRunning.Add(device.DeviceIp);
             // Cài phần mềm
+            string apkFbName = $@"{DeviceVariablesService.ApkPath}{DeviceVariablesService.ApkFacebookName}";
+            LdPlayerService.InstallApp(device.Name, apkFbName);
+            Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeInstallApp));
             for (int i = 0; i < 5; i++)
             {
                 string apkBrowser = $"{DeviceVariablesService.ApkPath}{DeviceVariablesService.ApkBrowserName}{i + 1}.apk";
@@ -59,10 +62,7 @@ namespace CreateAccountsProject.Controllers
                 // Thêm thông tin Browser đã cài vào Device
                 Account acc = new Account($"{DeviceVariablesService.BrowserName}{i + 1}", apkBrowser);
                 device.Accounts.Add(acc);
-            }
-            string apkFbName = $@"{DeviceVariablesService.ApkPath}{DeviceVariablesService.ApkFacebookName}";
-            LdPlayerService.InstallApp(device.Name, apkFbName);
-            Thread.Sleep(TimeSpan.FromSeconds(DeviceVariablesService.TimeInstallApp));
+            }            
             
             // Lấy ra device mới chạy
             device.Status = true;

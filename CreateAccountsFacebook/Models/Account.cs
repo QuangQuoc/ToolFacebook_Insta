@@ -82,6 +82,10 @@ namespace CreateAccountsProject.Models
             {
                 BirthDay = acc.BirthDay;
             }
+            if (acc.GioiTinh != null)
+            {
+                GioiTinh = acc.GioiTinh;
+            }
         }
     }
 }

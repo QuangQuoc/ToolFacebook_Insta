@@ -34,6 +34,8 @@ namespace CreateAccountsProject.Services
         // Server 2FA, Avatar
         public static string GetAvatarUrl { get; set; }
         public static string HostServerSuport { get; set; }
+        public static string Male { get; set; }
+        public static string Female { get; set; }
 
         public static void Initial()
         {
@@ -56,10 +58,13 @@ namespace CreateAccountsProject.Services
             LdDirectory = @"C:\LDPlayer"; 
             BrowserName = "mark.via.gp0";
             PackageNameFbName = "com.example.namefacebook";
-            Password = "quocsang199698";
+            Password = "quoc199698sang";
             UseClipboard = false;           
             HostServerSuport = "http://quocsang.ddns.net:3000";
             GetAvatarUrl = HostServerSuport + "/avatars";
+
+            Male = "MALE";
+            Female = "FEMALE";
         }
 
         public static void AddmaxThread(int mt)
