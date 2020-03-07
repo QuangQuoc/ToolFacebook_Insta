@@ -9,6 +9,12 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CreateAccounts", "..\Create
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CreateAccounts_V1.1", "..\CreateAccounts_V1.1\CreateAccounts_V1.1.vdproj", "{BD3CB7E0-1360-4E7A-84CC-C3B60B1CE71A}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CreateAccountsInstaller_V1.2", "..\CreateAccountsInstaller_V1.2\CreateAccountsInstaller_V1.2.vdproj", "{59D002E5-8C28-40E2-B357-DBD2B0A36550}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CreateAccountsInstaller_V1.3", "..\CreateAccountsInstaller_V1.3\CreateAccountsInstaller_V1.3.vdproj", "{3A8CB51B-EDA6-4C5E-970A-99DC32922F2F}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CreateAccountsInstaller_V1.4", "..\CreateAccountsInstaller_V1.4\CreateAccountsInstaller_V1.4.vdproj", "{B8323DC1-0199-4B26-9830-3E097399011A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +29,12 @@ Global
 		{BFC7DD42-AFC3-4E8B-8102-14EFA2A6C27B}.Release|Any CPU.ActiveCfg = Release
 		{BD3CB7E0-1360-4E7A-84CC-C3B60B1CE71A}.Debug|Any CPU.ActiveCfg = Debug
 		{BD3CB7E0-1360-4E7A-84CC-C3B60B1CE71A}.Release|Any CPU.ActiveCfg = Release
+		{59D002E5-8C28-40E2-B357-DBD2B0A36550}.Debug|Any CPU.ActiveCfg = Debug
+		{59D002E5-8C28-40E2-B357-DBD2B0A36550}.Release|Any CPU.ActiveCfg = Release
+		{3A8CB51B-EDA6-4C5E-970A-99DC32922F2F}.Debug|Any CPU.ActiveCfg = Debug
+		{3A8CB51B-EDA6-4C5E-970A-99DC32922F2F}.Release|Any CPU.ActiveCfg = Release
+		{B8323DC1-0199-4B26-9830-3E097399011A}.Debug|Any CPU.ActiveCfg = Debug
+		{B8323DC1-0199-4B26-9830-3E097399011A}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

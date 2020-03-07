@@ -174,10 +174,10 @@ namespace CreateAccountsProject.Controllers
                         ErrorService.AddFriends();
                     }
                     accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
-                    CheckStopEvent();   
-                }
-                DeleteImage();
-                Thread.Sleep(100);
+                    CheckStopEvent();
+                    DeleteImage();
+                    Thread.Sleep(100);
+                }                
             }
             // Update Status
             devicesRepo.UpdateStatus(ld.Id, false);           
@@ -208,7 +208,7 @@ namespace CreateAccountsProject.Controllers
             DelayService.Seconds(5);
             try
             {
-                var screen = KAutoHelper.ADBHelper.ScreenShoot(deviceID);
+                var screen = KAutoHelper.ADBHelper.ScreenShoot(deviceID, false, DeviceVariablesService.ScreenShotFilePath);
                 var compare_firstName = KAutoHelper.ImageScanOpenCV.FindOutPoint(screen, BMPVariablesService.BMP_FirstName);
                 DelayService.Seconds(1);
                 KAutoHelper.ADBHelper.Tap(deviceID, compare_firstName.Value.X, compare_firstName.Value.Y);

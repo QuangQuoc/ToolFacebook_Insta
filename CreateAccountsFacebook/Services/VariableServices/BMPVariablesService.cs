@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CreateAccountsProject.Services.VariableServices
 {
@@ -34,7 +37,8 @@ namespace CreateAccountsProject.Services.VariableServices
 
         public static void Initial()
         {
-            string currentDir = Environment.CurrentDirectory;
+            string currentDir = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
+
             //// Lấy họ tên
             //BMP_FirstName = (Bitmap)Bitmap.FromFile("Data/button_firstName.png");
             //BMP_LastNameFemale = (Bitmap)Bitmap.FromFile("Data/button_lastNameFemale.png");
@@ -66,7 +70,6 @@ namespace CreateAccountsProject.Services.VariableServices
             //BMP_ChooseImage = (Bitmap)Bitmap.FromFile("Data/upInfo/button_chooseImage.png");
             //BMP_ConfirmUpAvatar = (Bitmap)Bitmap.FromFile("Data/upInfo/button_confirmUpAvatar.png");
             //BMP_CheckUpImage = (Bitmap)Bitmap.FromFile("Data/upInfo/button_checkUpImage.png");
-            // Lấy họ tên
             BMP_FirstName = (Bitmap)Bitmap.FromFile(currentDir + @"\Data\button_firstName.png");
             BMP_LastNameFemale = (Bitmap)Bitmap.FromFile(currentDir + @"\Data\button_lastNameFemale.png");
             BMP_LastNameMale = (Bitmap)Bitmap.FromFile(currentDir + @"\Data\button_lastNameMale.png");
