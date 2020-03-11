@@ -1,10 +1,13 @@
 ﻿using CreateAccountsProject.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CreateAccountsProject.Services
 {
@@ -34,6 +37,9 @@ namespace CreateAccountsProject.Services
         // Server 2FA, Avatar
         public static string GetAvatarUrl { get; set; }
         public static string HostServerSuport { get; set; }
+        public static string Male { get; set; }
+        public static string Female { get; set; }
+        public static string ScreenShotFilePath { get; set; }
 
         public static void Initial()
         {
@@ -47,18 +53,23 @@ namespace CreateAccountsProject.Services
             TimeRestartDevice = 100;
             TimeInstallApp = 30;
             ConfigDevice = new LDProperty() { Cpu = "1", Memory = "1024", Imei = "", Resolution = "540,960,240" };
-            ApkPath = Environment.CurrentDirectory + @"\APK\";
-        
+            //ApkPath = @"E:\02. Cong viec\Share_Quoc_Sang\DataKhongShare\02. File APK\FileAPK\";
+            ApkPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + @"\APK\";
+            ScreenShotFilePath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + @"\data\screenShoot.png";
+
             ApkBrowserName = "Via0";
             ApkFacebookName = "NameFacebook.apk";
             DeviceIpsRunning = new List<string>();
             LdDirectory = @"C:\LDPlayer"; 
             BrowserName = "mark.via.gp0";
             PackageNameFbName = "com.example.namefacebook";
-            Password = "quocsang199698";
+            Password = "quoc199698sang";
             UseClipboard = false;           
             HostServerSuport = "http://quocsang.ddns.net:3000";
             GetAvatarUrl = HostServerSuport + "/avatars";
+
+            Male = "MALE";
+            Female = "FEMALE";
         }
 
         public static void AddmaxThread(int mt)

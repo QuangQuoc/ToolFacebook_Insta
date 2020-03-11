@@ -60,7 +60,8 @@ namespace CreateAccountsProject.Controllers
                             return;
                         }
                         // Tạo Account Name
-                        AddAccountName(ld.Accounts[i].BrowserName);
+                        string gioitinh =  AddAccountName(ld.Accounts[i].BrowserName);
+                        ld.Accounts[i].GioiTinh = gioitinh;
                         AddBrithday();
                         string phoneNumber = "";
                         if (SimVariablesService.UseSimThue)
@@ -109,6 +110,9 @@ namespace CreateAccountsProject.Controllers
                     }
                     ld.Accounts[i].BrowserStatus = true;
                     accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
+                    // Cập nhật dữ liệu ld vào db
+                    ld.ActivedAccounts++;
+                    devicesRepo.UpdateNewAccount(ld, i);
                     CheckStopEvent();
                     //try
                     //{
@@ -171,11 +175,9 @@ namespace CreateAccountsProject.Controllers
                     }
                     accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
                     CheckStopEvent();
-                    // Cập nhật dữ liệu vào Db
-                    ld.ActivedAccounts++;                  
-                    devicesRepo.UpdateNewAccount(ld, i);
-                }
-                Thread.Sleep(30);
+                    DeleteImage();
+                    Thread.Sleep(100);
+                }                
             }
             // Update Status
             devicesRepo.UpdateStatus(ld.Id, false);           
@@ -195,17 +197,18 @@ namespace CreateAccountsProject.Controllers
         /// Tạo tên tài khoản
         /// </summary>
         /// <param name="browserName"></param>
-        public void AddAccountName(string browserName)
+        public string AddAccountName(string browserName)
         {
             string deviceID = ld.DeviceIp;
             string deviceName = ld.Name;
+            string gioitinh = "";
             // Set họ 
             //KAutoHelper.ADBHelper.ExecuteCMD("adb shell monkey -p com.example.namefacebook -c android.intent.category.LAUNCHER 1");
             LdPlayerService.RunApp(deviceName, DeviceVariablesService.PackageNameFbName);
             DelayService.Seconds(5);
             try
             {
-                var screen = KAutoHelper.ADBHelper.ScreenShoot(deviceID);
+                var screen = KAutoHelper.ADBHelper.ScreenShoot(deviceID, false, DeviceVariablesService.ScreenShotFilePath);
                 var compare_firstName = KAutoHelper.ImageScanOpenCV.FindOutPoint(screen, BMPVariablesService.BMP_FirstName);
                 DelayService.Seconds(1);
                 KAutoHelper.ADBHelper.Tap(deviceID, compare_firstName.Value.X, compare_firstName.Value.Y);
@@ -231,6 +234,7 @@ namespace CreateAccountsProject.Controllers
             if (random.Next(2) == 0)
             {
                 // Set tên nữ
+                gioitinh = DeviceVariablesService.Female;
                 //KAutoHelper.ADBHelper.ExecuteCMD("adb shell monkey -p com.example.namefacebook -c android.intent.category.LAUNCHER 1");
                 LdPlayerService.RunApp(deviceName, DeviceVariablesService.PackageNameFbName);
                 DelayService.Seconds(5);
@@ -261,6 +265,7 @@ namespace CreateAccountsProject.Controllers
             else
             {
                 // Set tên nam
+                gioitinh = DeviceVariablesService.Male;
                 //KAutoHelper.ADBHelper.ExecuteCMD("adb shell monkey -p com.example.namefacebook -c android.intent.category.LAUNCHER 1");
                 LdPlayerService.RunApp(deviceName, DeviceVariablesService.PackageNameFbName);
                 DelayService.Seconds(5);
@@ -287,6 +292,7 @@ namespace CreateAccountsProject.Controllers
                 DelayService.Seconds(1);
                 KAutoHelper.ADBHelper.TapByPercent(deviceID, 38.1, 51.5);
             }
+            return gioitinh;
         }
 
         /// <summary>
@@ -572,7 +578,11 @@ namespace CreateAccountsProject.Controllers
 
                 // Xác nhận mật khẩu trước khi setup 2fa
                 var screen2 = KAutoHelper.ADBHelper.ScreenShoot(deviceID);
+  
+                //var sang = KAutoHelper.ImageScanOpenCV.Find(screen, Luot_Xem_Tin_Khac_BMP);
+                //sang.Save("ok.png");
                 var compare_ConfirmPass2Fa = KAutoHelper.ImageScanOpenCV.FindOutPoint(screen2, BMPVariablesService.BMP_ConfirmPass2Fa);
+                
                 if (compare_ConfirmPass2Fa != null)
                 {
                     try
@@ -583,7 +593,7 @@ namespace CreateAccountsProject.Controllers
                     {
                         KAutoHelper.ADBHelper.TapByPercent(deviceID, 10.6, 32.4);
                     }
-                    KAutoHelper.ADBHelper.InputText(deviceID, "quocsang199698");
+                    KAutoHelper.ADBHelper.InputText(deviceID, DeviceVariablesService.Password);
                     Thread.Sleep(TimeSpan.FromSeconds(1));
                     KAutoHelper.ADBHelper.Key(deviceID, KAutoHelper.ADBKeyEvent.KEYCODE_ENTER);
                 }
@@ -759,6 +769,26 @@ namespace CreateAccountsProject.Controllers
             // Enter load địa chỉ
             KAutoHelper.ADBHelper.Key(deviceID, KAutoHelper.ADBKeyEvent.KEYCODE_ENTER);
             DelayService.Seconds(10);
+        }
+
+        /// <summary>
+        /// Xoá ảnh đã tải
+        /// </summary>
+        /// <returns></returns>
+        private void DeleteImage()
+        {
+            string deviceID = ld.DeviceIp;
+            string deviceName = ld.Name;
+            try
+            {
+                //KAutoHelper.ADBHelper.ExecuteCMD("adb shell monkey -p com.android.providers.downloads.ui -c android.intent.category.LAUNCHER 1");
+                LdPlayerService.RunApp(deviceName, "com.android.providers.downloads.ui");
+                Thread.Sleep(TimeSpan.FromSeconds(5));
+                KAutoHelper.ADBHelper.LongPress(deviceID, 208, 187, 1500);
+                Thread.Sleep(TimeSpan.FromSeconds(1));
+                KAutoHelper.ADBHelper.TapByPercent(deviceID, 92.9, 8.7);
+            }
+            catch { }
         }
     }
 }
