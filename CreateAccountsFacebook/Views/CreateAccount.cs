@@ -132,10 +132,10 @@ namespace CreateAccountsProject.Views
                 }
                 catch (Exception ex)
                 {
+                    MessageBox.Show(ex.ToString());
                     ErrorService.AbortThread(ex);
                 }
             }
-            DeviceVariablesService.ThreadRunning = 0;
         }
     }
 }

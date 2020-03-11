@@ -1,4 +1,6 @@
-﻿using CreateAccountsProject.Views;
+﻿using CreateAccountsProject.Services;
+using CreateAccountsProject.Services.VariableServices;
+using CreateAccountsProject.Views;
 using MySql.Data.Entity;
 using System;
 using System.Collections.Generic;
@@ -20,7 +22,6 @@ namespace CreateAccountsProject
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new CreateAccount());
-
         }
     }
 }

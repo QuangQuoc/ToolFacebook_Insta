@@ -58,7 +58,7 @@ namespace CreateAccountsProject.Services
         #region Thread Error
         public static void AbortThread(Exception e)
         {
-            MessageBox.Show("Lỗi hủy Thread", "Lỗi Thread", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show($"Lỗi hủy Thread \r\n {e.ToString()}", "Lỗi Thread", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion
     }

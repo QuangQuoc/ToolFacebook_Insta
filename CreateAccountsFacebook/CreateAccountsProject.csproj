@@ -236,6 +236,7 @@
     <Compile Include="Services\DelayService.cs" />
     <Compile Include="Services\ErrorService.cs" />
     <Compile Include="Services\HttpRequestService.cs" />
+    <Compile Include="Services\RentCodeService.cs" />
     <Compile Include="Services\VariableServices\BMPVariablesService.cs" />
     <Compile Include="Services\VariableServices\DeviceVariablesService.cs" />
     <Compile Include="Services\LdPlayerService.cs" />
