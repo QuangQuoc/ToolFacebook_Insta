@@ -119,10 +119,31 @@ namespace CreateAccountsProject.Controllers
                         }
                         ld.Accounts[i].PhoneNumber = phoneNumber;
                         string pass = AddPassWord();
-                        ld.Accounts[i].Password = pass;
-                        bool smsOk = RequestSms();
-                        // TH không lấy được Message
-                        if (!smsOk)
+                        DelayService.Seconds(10);
+                        var screen = KAutoHelper.ADBHelper.ScreenShoot(ld.DeviceIp, false, DeviceVariablesService.ScreenShotFilePath);
+                        var compare_checkDkSdt = KAutoHelper.ImageScanOpenCV.FindOutPoint(screen, BMPVariablesService.BMP_CheckDkSdt);
+                        if (compare_checkDkSdt == null)
+                        {
+                            ld.Accounts[i].Password = pass;
+                            bool smsOk = RequestSms();
+                            // TH không lấy được Message
+                            if (!smsOk)
+                            {
+                                // Xóa browser
+                                LdPlayerService.UnInstallApp(ld.Name, ld.Accounts[i].BrowserName);
+                                DelayService.Seconds(40);
+                                // Cài lại
+                                LdPlayerService.InstallApp(ld.Name, ld.Accounts[i].BrowserFileName);
+                                DelayService.Seconds(40);
+                                // Cho chạy lại trình duyệt này
+                                nError++;
+                            }
+                            else
+                            {
+                                runOk = true;
+                            }
+                        }
+                        else
                         {
                             // Xóa browser
                             LdPlayerService.UnInstallApp(ld.Name, ld.Accounts[i].BrowserName);
@@ -130,13 +151,21 @@ namespace CreateAccountsProject.Controllers
                             // Cài lại
                             LdPlayerService.InstallApp(ld.Name, ld.Accounts[i].BrowserFileName);
                             DelayService.Seconds(40);
+                            // Đổi nhà cung cấp sim khác
+                            // Nếu không lấy được sđt => đổi dịch vụ
+                            if (simService == SIMSERVICE.SIMTHUE)
+                            {
+                                simService = SIMSERVICE.RENTCODE;
+                                rentcode.CreateRequest();
+                            }
+                            else if (simService == SIMSERVICE.RENTCODE)
+                            {
+                                simService = SIMSERVICE.SIMTHUE;
+                                simthue.CreateRequest();
+                            }
                             // Cho chạy lại trình duyệt này
                             nError++;
-                        }
-                        else
-                        {
-                            runOk = true;
-                        }
+                        }    
                     }
                     ld.Accounts[i].BrowserStatus = true;
                     accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
@@ -239,6 +268,10 @@ namespace CreateAccountsProject.Controllers
             try
             {
                 var screen = KAutoHelper.ADBHelper.ScreenShoot(deviceID, false, DeviceVariablesService.ScreenShotFilePath);
+                //screen.Save("h1.png");
+                //BMPVariablesService.BMP_FirstName.Save("h2.png");
+                //var test = KAutoHelper.ImageScanOpenCV.Find(screen, BMPVariablesService.BMP_FirstName);
+                //test.Save("h3.png");
                 var compare_firstName = KAutoHelper.ImageScanOpenCV.FindOutPoint(screen, BMPVariablesService.BMP_FirstName);
                 DelayService.Seconds(1);
                 KAutoHelper.ADBHelper.Tap(deviceID, compare_firstName.Value.X, compare_firstName.Value.Y);
@@ -374,6 +407,7 @@ namespace CreateAccountsProject.Controllers
             DelayService.Seconds(10);
             return password;
         }
+
 
         /// <summary>
         /// Hàm lấy sdt - SIMTHUE + RENTCODE

@@ -98,7 +98,6 @@ namespace CreateAccountsProject.Services
         /// <returns></returns>
         public Dictionary<string, dynamic> CheckRequest()
         {
-            requestId = "3940886";
             string url = $"https://api.rentcode.net/api/v2/order/{requestId}/check?apiKey={SimVariablesService.ApiKeyRentCode}";
             var data = HttpRequestService.RequestDicData(url);
             return data;
