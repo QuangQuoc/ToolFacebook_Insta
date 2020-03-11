@@ -21,16 +21,7 @@ namespace CreateAccountsProject
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //TEST
-            DeviceVariablesService.Initial();
-            BMPVariablesService.Initial();
-            SimVariablesService.Initial();
-            RentCodeService sim = new RentCodeService();
-            //sim.CreateRequest();
-            //sim.GetNumber();
-            sim.GetSms();
-            //Application.Run(new CreateAccount());
-
+            Application.Run(new CreateAccount());
         }
     }
 }
