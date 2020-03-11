@@ -13,6 +13,11 @@ using ControlLdPlayer.Repositories;
 
 namespace CreateAccountsProject.Controllers
 {
+    enum SIMSERVICE
+    {
+        SIMTHUE,
+        RENTCODE
+    }
     public class CreateAccountsController
     {
         // Khai báo biến
@@ -22,10 +27,20 @@ namespace CreateAccountsProject.Controllers
         private Device ld;
         private Random random = new Random();
         private SimThueService simthue = new SimThueService();
+        private RentCodeService rentcode = new RentCodeService();
+        private SIMSERVICE simService;
 
         public CreateAccountsController(Device _ld)
         {
             ld = _ld;
+            if (SimVariablesService.UseSimThue)
+            {
+                simService = SIMSERVICE.SIMTHUE;
+            }
+            else if (SimVariablesService.UseRentCode)
+            {
+                simService = SIMSERVICE.RENTCODE;
+            }
         }
         /// <summary>
         /// - Điều khiển LD tạo tài khoản mới cho đến khi đủ tài khoản
@@ -64,28 +79,43 @@ namespace CreateAccountsProject.Controllers
                         ld.Accounts[i].GioiTinh = gioitinh;
                         AddBrithday();
                         string phoneNumber = "";
-                        if (SimVariablesService.UseSimThue)
+                        if (simService == SIMSERVICE.SIMTHUE)
                         {
                             simthue.CreateRequest();
-                            int n = 0;
-                            while (phoneNumber == "")
+                        }
+                        else if (simService == SIMSERVICE.RENTCODE)
+                        {
+                            rentcode.CreateRequest();
+                        }
+
+                        int n = 0;
+                        while (phoneNumber == "")
+                        {
+                            // Lỗi lấy sđt 5 lần
+                            if (n == 3)
                             {
-                                // Lỗi lấy sđt 5 lần
-                                if (n == 3)
-                                {
-                                    ErrorService.SimThue_GetNumberError();
-                                    return;
-                                }
-                                DelayService.Seconds(10); //
-                                phoneNumber = AddPhoneNumber();
-                                // delay ni a
-                                if (phoneNumber == "")
-                                {
-                                    DelayService.Seconds(3);
-                                    simthue.CreateRequest();
-                                }
-                                n++;
+                                ErrorService.SimThue_GetNumberError();
+                                return;
                             }
+                            DelayService.Seconds(10); //
+                            phoneNumber = AddPhoneNumber();
+                            // delay ni a
+                            if (phoneNumber == "")
+                            {
+                                DelayService.Seconds(3);
+                                // Nếu không lấy được sđt => đổi dịch vụ
+                                if (simService == SIMSERVICE.SIMTHUE)
+                                {
+                                    simService = SIMSERVICE.RENTCODE;
+                                    rentcode.CreateRequest();
+                                }
+                                else if (simService == SIMSERVICE.RENTCODE)
+                                {
+                                    simService = SIMSERVICE.SIMTHUE;
+                                    simthue.CreateRequest();
+                                }   
+                            }
+                            n++;
                         }
                         ld.Accounts[i].PhoneNumber = phoneNumber;
                         string pass = AddPassWord();
@@ -346,7 +376,7 @@ namespace CreateAccountsProject.Controllers
         }
 
         /// <summary>
-        /// Hàm lấy sdt
+        /// Hàm lấy sdt - SIMTHUE + RENTCODE
         /// </summary>
         /// <returns></returns>
         private string AddPhoneNumber()
@@ -357,23 +387,27 @@ namespace CreateAccountsProject.Controllers
             // điền sdt
             // TH: Sử dụng Sim thuê Service
             string phoneNumber = "";
-            if (SimVariablesService.UseSimThue)
+            int n = 0;
+            while(phoneNumber == "" && n < 3)
             {
-                int n = 0;
-                while(phoneNumber == "" && n < 3)
+                if (simService == SIMSERVICE.SIMTHUE)
                 {
                     phoneNumber = simthue.GetNumber();
-                    DelayService.Seconds(10);
-                    n++;
                 }
-                KAutoHelper.ADBHelper.InputText(ld.DeviceIp, phoneNumber);
+                else if(simService == SIMSERVICE.RENTCODE)
+                {
+                    phoneNumber = rentcode.GetNumber();
+                }
+                DelayService.Seconds(10);
+                n++;
             }
+            KAutoHelper.ADBHelper.InputText(ld.DeviceIp, phoneNumber);
             return phoneNumber;
         }
 
 
         /// <summary>
-        /// Hàm lấy mã xác thực
+        /// Hàm lấy mã xác thực SIMTHUE + RENTCODE
         /// </summary>
         /// <returns></returns>
         private bool RequestSms()
@@ -409,7 +443,15 @@ namespace CreateAccountsProject.Controllers
             }
             KAutoHelper.ADBHelper.TapByPercent(ld.DeviceIp, 15.9, 28.6);
             DelayService.Seconds(1);
-            string sms = simthue.GetSms();
+            string sms = null;
+            if (simService == SIMSERVICE.SIMTHUE)
+            {
+                sms = simthue.GetSms();
+            }
+            else if (simService == SIMSERVICE.RENTCODE)
+            {
+                sms = rentcode.GetSms();
+            }  
             if (sms == null)
             {
                 return false;
