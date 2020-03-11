@@ -50,7 +50,6 @@ namespace CreateAccountsProject.Services
             MessageBox.Show("Lỗi thêm bạn bè", "Lỗi Tạo tài khoản", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion
-<<<<<<< HEAD
 
         public static void AdbKteam(Exception e)
         {
@@ -59,20 +58,8 @@ namespace CreateAccountsProject.Services
         #region Thread Error
         public static void AbortThread(Exception e)
         {
-            MessageBox.Show("Lỗi hủy Thread", "Lỗi Thread", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show($"Lỗi hủy Thread \r\n {e.ToString()}", "Lỗi Thread", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion
-=======
-        #region Thread
-        public static void AbortThread()
-        {
-            MessageBox.Show("Lỗi hủy thread", "Lỗi Thread", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-        #endregion
-        public static void AdbKteam(Exception e)
-        {
-            MessageBox.Show(e.ToString(), "Lỗi ADB Kteam", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
->>>>>>> Feature-Management
     }
 }

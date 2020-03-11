@@ -133,27 +133,9 @@ namespace CreateAccountsProject.Views
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
-                    ErrorService.AbortThread();
+                    ErrorService.AbortThread(ex);
                 }
             }
-        }
-
-        private void CreateAccount_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            DeviceVariablesService.CreateBotLive = false;
-            foreach (var thread in DeviceVariablesService.ThreadsRunning)
-            {
-                try
-                {
-                    thread.Abort();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                    ErrorService.AbortThread();
-                }
-            }
-            DeviceVariablesService.ThreadRunning = 0;
         }
     }
 }

@@ -33,12 +33,7 @@ namespace CreateAccountsProject.Services
         public static bool UseClipboard { get; set; }
         // Server 2FA, Avatar
         public static string GetAvatarUrl { get; set; }
-<<<<<<< HEAD
         public static string HostServerSuport { get; set; }
-=======
-        public static string ServerHostName { get; set; }
-        public static List<Thread> ThreadsRunning { get; set; }
->>>>>>> Feature-Management
 
         public static void Initial()
         {
@@ -52,10 +47,6 @@ namespace CreateAccountsProject.Services
             TimeRestartDevice = 100;
             TimeInstallApp = 30;
             ConfigDevice = new LDProperty() { Cpu = "1", Memory = "1024", Imei = "", Resolution = "540,960,240" };
-<<<<<<< HEAD
-            //ApkPath = @"E:\02. Cong viec\Share_Quoc_Sang\DataKhongShare\02. File APK\FileAPK\";
-=======
->>>>>>> Feature-Management
             ApkPath = Environment.CurrentDirectory + @"\APK\";
         
             ApkBrowserName = "Via0";
@@ -65,20 +56,9 @@ namespace CreateAccountsProject.Services
             BrowserName = "mark.via.gp0";
             PackageNameFbName = "com.example.namefacebook";
             Password = "quocsang199698";
-<<<<<<< HEAD
-            UseClipboard = false;
-<<<<<<< HEAD
-            GetAvatarUrl = HostServerSuport + "/avatars";
-            HostServerSuport = "http://quocsang.ddns.net:3000";
-=======
-            GetAvatarUrl = ServerHostName + "/avatars";
-            ServerHostName = "http://quocsang.ddns.net:3000";
->>>>>>> Feature-Management
-=======
             UseClipboard = false;           
             HostServerSuport = "http://quocsang.ddns.net:3000";
             GetAvatarUrl = HostServerSuport + "/avatars";
->>>>>>> Feature-CreateFileSetup
         }
 
         public static void AddmaxThread(int mt)
