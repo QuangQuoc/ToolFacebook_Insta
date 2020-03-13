@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace CreateAccountsProject.Services
 {
-    public static class VariablesService
+    public class VariablesService
     {
-        public static string dirLd = @"E:\ChangZhi\LDPlayer";
+        public static string dirLd = @"C:\ChangZhi\LDPlayer";
+
         public static string apiKey = "BTaKJG45nKYfNrYIqYX_MQt6f";
 
         public static string fbServiceName = "Facebook";
@@ -20,16 +21,17 @@ namespace CreateAccountsProject.Services
         public static Random random = new Random();
 
         #region Configuration Host
-        public static string myHostName = "";
+        public static string myHostName = "QuangQuoc_001";
         public static Host myHost = new Host();
         #endregion
         #region Run Device
         public static int timeCreateDevice = 20;
         public static double timeRunDevice = 60;
-        public static LDProperty configDevice = new LDProperty() { Cpu = "", Memory = "", Imei = "", Resolution = "" };
-        public static string apkBrowserPath = "";
-        public static string apkBrowserName = "";
-        public static string apkFacebookName = "";
+        public static LDProperty configDevice = new LDProperty() { Cpu = "1", Memory = "1024", Imei = "", Resolution = "540,960,240" };
+        public static string apkBrowserPath = "C:\\Users\\Admin\\Desktop\\FileAPK";
+        
+        public static string apkBrowserName = "Via0";
+        public static string apkFacebookName = "NameFacebook.apk";
         #endregion
         #region Management Create Acount
         public static int maxThread = 3;      
@@ -37,9 +39,7 @@ namespace CreateAccountsProject.Services
         public static List<string> deviceIpsRunning = new List<string>();
         public static bool createBotLive = true;
         #endregion
-
-        
-
+       
         public static Bitmap
                              // Lấy họ tên
                              BMP_FirstName = (Bitmap)Bitmap.FromFile("Data/button_firstName.png"),
@@ -70,5 +70,10 @@ namespace CreateAccountsProject.Services
                              BMP_ChooseImage = (Bitmap)Bitmap.FromFile("Data/upInfo/button_chooseImage.png"),
                              BMP_ConfirmUpAvatar = (Bitmap)Bitmap.FromFile("Data/upInfo/button_confirmUpAvatar.png"),
                              BMP_CheckUpImage = (Bitmap)Bitmap.FromFile("Data/upInfo/button_checkUpImage.png");
+
+        public static void ChangeMaxThread(int mt)
+        {
+            maxThread = mt;
+        }
     }
 }

@@ -13,5 +13,7 @@ namespace CreateAccountsProject.Models
         public string Link { get; set; }
 
         public int UsingNumber { get; set; }
+
+        public List<Account> Accounts { get; set; }
     }
 }

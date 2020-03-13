@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CreateAccountsProject.Services;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace CreateAccountsProject.Services
         public static void RunLdConsole(string command)
         {
             string arg = $"ldconsole.exe {command}";
-            CmdService.Run(VariablesService.dirLd, arg);
+            CmdService.Run(DeviceVariablesService.LdDirectory, arg);
         }
     }
 }
