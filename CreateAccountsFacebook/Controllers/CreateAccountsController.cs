@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using ControlLdPlayer.Repositories;
+using System.Windows.Forms;
 
 namespace CreateAccountsProject.Controllers
 {
@@ -246,11 +247,7 @@ namespace CreateAccountsProject.Controllers
                     accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
                     CheckStopEvent();
                     DeleteImage();
-<<<<<<< HEAD
-                    Thread.Sleep(150);
-=======
                     DelayService.Seconds(100);
->>>>>>> Test-CreateAccount
                 }                
             }
             // Update Status
@@ -500,11 +497,27 @@ namespace CreateAccountsProject.Controllers
             else if (simService == SIMSERVICE.RENTCODE)
             {
                 sms = rentcode.GetSms();
-            }  
+            }
             if (sms == null)
             {
                 return false;
             }
+            // Kiểm tra đảm bảo lấy đúng code sms thì mới cho nhập và đi tiếp
+            else
+            {
+                try
+                {
+                    if (sms.Length != 5)
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Lỗi kiểm tra sms");
+                }
+            }
+            
             KAutoHelper.ADBHelper.InputText(ld.DeviceIp, sms);
             DelayService.Seconds(1);
             KAutoHelper.ADBHelper.Key(ld.DeviceIp, KAutoHelper.ADBKeyEvent.KEYCODE_ENTER);
