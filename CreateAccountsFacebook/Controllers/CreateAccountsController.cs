@@ -79,14 +79,16 @@ namespace CreateAccountsProject.Controllers
                         ld.Accounts[i].GioiTinh = gioitinh;
                         AddBrithday();
                         string phoneNumber = "";
-                        if (simService == SIMSERVICE.SIMTHUE)
-                        {
-                            simthue.CreateRequest();
-                        }
-                        else if (simService == SIMSERVICE.RENTCODE)
-                        {
-                            rentcode.CreateRequest();
-                        }
+                        //if (simService == SIMSERVICE.SIMTHUE)
+                        //{
+                        //    simthue.CreateRequest();
+                        //}
+                        //else if (simService == SIMSERVICE.RENTCODE)
+                        //{
+                        //    rentcode.CreateRequest();
+                        //}
+
+                        rentcode.CreateRequest();
 
                         int n = 0;
                         while (phoneNumber == "")
@@ -104,16 +106,17 @@ namespace CreateAccountsProject.Controllers
                             {
                                 DelayService.Seconds(3);
                                 // Nếu không lấy được sđt => đổi dịch vụ
-                                if (simService == SIMSERVICE.SIMTHUE)
-                                {
-                                    simService = SIMSERVICE.RENTCODE;
-                                    rentcode.CreateRequest();
-                                }
-                                else if (simService == SIMSERVICE.RENTCODE)
-                                {
-                                    simService = SIMSERVICE.SIMTHUE;
-                                    simthue.CreateRequest();
-                                }   
+                                //if (simService == SIMSERVICE.SIMTHUE)
+                                //{
+                                //    simService = SIMSERVICE.RENTCODE;
+                                //    rentcode.CreateRequest();
+                                //}
+                                //else if (simService == SIMSERVICE.RENTCODE)
+                                //{
+                                //    simService = SIMSERVICE.SIMTHUE;
+                                //    simthue.CreateRequest();
+                                //}
+                                rentcode.CreateRequest();
                             }
                             n++;
                         }
@@ -124,6 +127,8 @@ namespace CreateAccountsProject.Controllers
                         var compare_checkDkSdt = KAutoHelper.ImageScanOpenCV.FindOutPoint(screen, BMPVariablesService.BMP_CheckDkSdt);
                         if (compare_checkDkSdt != null)
                         {
+                            KAutoHelper.ADBHelper.Tap(ld.DeviceIp, compare_checkDkSdt.Value.X, compare_checkDkSdt.Value.Y);
+                            DelayService.Seconds(10);
                             ld.Accounts[i].Password = pass;
                             bool smsOk = RequestSms();
                             // TH không lấy được Message
@@ -153,16 +158,17 @@ namespace CreateAccountsProject.Controllers
                             DelayService.Seconds(40);
                             // Đổi nhà cung cấp sim khác
                             // Nếu không lấy được sđt => đổi dịch vụ
-                            if (simService == SIMSERVICE.SIMTHUE)
-                            {
-                                simService = SIMSERVICE.RENTCODE;
-                                rentcode.CreateRequest();
-                            }
-                            else if (simService == SIMSERVICE.RENTCODE)
-                            {
-                                simService = SIMSERVICE.SIMTHUE;
-                                simthue.CreateRequest();
-                            }
+                            //if (simService == SIMSERVICE.SIMTHUE)
+                            //{
+                            //    simService = SIMSERVICE.RENTCODE;
+                            //    rentcode.CreateRequest();
+                            //}
+                            //else if (simService == SIMSERVICE.RENTCODE)
+                            //{
+                            //    simService = SIMSERVICE.SIMTHUE;
+                            //    simthue.CreateRequest();
+                            //}
+                            
                             // Cho chạy lại trình duyệt này
                             nError++;
                         }    
@@ -285,7 +291,7 @@ namespace CreateAccountsProject.Controllers
             // Load vào web đăng ký
             //KAutoHelper.ADBHelper.ExecuteCMD($"adb shell monkey -p {browserName} -c android.intent.category.LAUNCHER 1");
             LdPlayerService.RunApp(deviceName, browserName);
-            DelayService.Seconds(5);
+            DelayService.Seconds(12);
             loadLink("https://mbasic.facebook.com/reg");
             DelayService.Seconds(2);
             // Get họ
@@ -458,12 +464,6 @@ namespace CreateAccountsProject.Controllers
                 loadLink("mbasic.facebook.com/confirmemail.php");
                 DelayService.Seconds(10);
             }
-            else
-            {
-                // click button đăng nhập 1 lần
-                KAutoHelper.ADBHelper.TapByPercent(ld.DeviceIp, 48.9, 55.1);
-                DelayService.Seconds(5);
-            }
             try
             {
                 var screen2 = KAutoHelper.ADBHelper.ScreenShoot(ld.DeviceIp);
@@ -475,18 +475,18 @@ namespace CreateAccountsProject.Controllers
             {
                 KAutoHelper.ADBHelper.TapByPercent(ld.DeviceIp, 15.9, 28.6);
             }
-            KAutoHelper.ADBHelper.TapByPercent(ld.DeviceIp, 15.9, 28.6);
             DelayService.Seconds(1);
-            string sms = null;
-            if (simService == SIMSERVICE.SIMTHUE)
-            {
-                sms = simthue.GetSms();
-            }
-            else if (simService == SIMSERVICE.RENTCODE)
-            {
-                sms = rentcode.GetSms();
-            }  
-            if (sms == null)
+            string sms = "";
+            //if (simService == SIMSERVICE.SIMTHUE)
+            //{
+            //    sms = simthue.GetSms();
+            //}
+            //else if (simService == SIMSERVICE.RENTCODE)
+            //{
+            //    sms = rentcode.GetSms();
+            //}
+            sms = rentcode.GetSms();
+            if (sms == "")
             {
                 return false;
             }
@@ -503,7 +503,7 @@ namespace CreateAccountsProject.Controllers
             try
             {
                 string[] nameFriend = { "Linh", "manh", "thuong", "hoai", "sang", "quoc", "vu", "tuan", "nga", "hung",
-                                    "Dong", "ly", "tan", "mai", "Nhi", "Hoai", "Thanh", "Cat", "Trang", "Thao", "Nguyen"};
+                                    "Dong", "ly", "tan", "mai", "Nhi", "Hoai", "Thanh", "cam", "Trang", "Thao", "Nguyen"};
                 Thread.Sleep(TimeSpan.FromSeconds(5));
                 for (int i = 0; i <= 5; i++)
                 {
@@ -651,7 +651,7 @@ namespace CreateAccountsProject.Controllers
                 {
                     KAutoHelper.ADBHelper.TapByPercent(deviceID, 48.3, 67.8);
                 }
-                Thread.Sleep(TimeSpan.FromSeconds(15));
+                Thread.Sleep(TimeSpan.FromSeconds(20));
 
                 // Xác nhận mật khẩu trước khi setup 2fa
                 var screen2 = KAutoHelper.ADBHelper.ScreenShoot(deviceID);
@@ -674,7 +674,7 @@ namespace CreateAccountsProject.Controllers
                     Thread.Sleep(TimeSpan.FromSeconds(1));
                     KAutoHelper.ADBHelper.Key(deviceID, KAutoHelper.ADBKeyEvent.KEYCODE_ENTER);
                 }
-                Thread.Sleep(TimeSpan.FromSeconds(5));
+                Thread.Sleep(TimeSpan.FromSeconds(15));
 
                 // Lấy quyền sử dụng Clipboard
                 // - Chờ cho đến khi có quyền sử dụng Clipboard

@@ -147,11 +147,11 @@ namespace CreateAccountsProject.Services
         /// <returns></returns>
         public string GetSms()
         {
-            string code = null;
+            string code = "";
             int n = 0;
             while (true)
             {
-                if (n == 12)
+                if (n == 30)
                 {
                     break;
                 }
@@ -186,7 +186,7 @@ namespace CreateAccountsProject.Services
                         }
                     }
                 }
-                if ((code != null))
+                if ((code != ""))
                 {
                     break;
                 }
