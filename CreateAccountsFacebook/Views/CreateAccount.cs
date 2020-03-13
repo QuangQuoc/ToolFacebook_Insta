@@ -101,14 +101,31 @@ namespace CreateAccountsProject.Views
 
             DeviceVariablesService.CreateBotLive = true;
             Thread createThread = new Thread(manaCtrl.StartManagement);
-            //manaCtrl.StartManagement();
-            createThread.Start();
-            DeviceVariablesService.ThreadsRunning.Add(createThread);
+            if (DeviceVariablesService.ThreadsRunning.Count > 0)
+            {
+                MessageBox.Show("Hiện tại tool đang chạy, bạn nên dừng lại để bắt đầu chạy kịch bản mới", 
+                    "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                DialogResult rs = MessageBox.Show("Bạn muốn bắt đầu chạy tool lập tài khoản?", "Xác nhận",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (rs == DialogResult.Yes)
+                {
+                    //manaCtrl.StartManagement();
+                    createThread.Start();
+                    DeviceVariablesService.ThreadsRunning.Add(createThread);
+                }
+            }   
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            StopProject();
+            DialogResult rs = MessageBox.Show("Bạn muốn dừng kịch bản đang chạy?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (rs == DialogResult.Yes)
+            {
+                StopProject();
+            }
         }
 
         private void CreateAccount_FormClosed(object sender, FormClosedEventArgs e)
@@ -136,6 +153,7 @@ namespace CreateAccountsProject.Views
                     ErrorService.AbortThread(ex);
                 }
             }
+            DeviceVariablesService.ThreadsRunning.Clear();
         }
     }
 }
