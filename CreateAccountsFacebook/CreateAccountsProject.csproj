@@ -100,7 +100,7 @@
       <HintPath>packages\itext7.7.1.8\lib\net40\itext.svg.dll</HintPath>
     </Reference>
     <Reference Include="KAutoHelper">
-      <HintPath>..\..\DataKhongShare\01. Tai Lieu\KAutoHelper V2\KAutoHelper.dll</HintPath>
+      <HintPath>..\..\..\DataKhongShare\01. Tai Lieu\KAutoHelper V2\KAutoHelper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNetCore.Hosting.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.Abstractions.dll</HintPath>
