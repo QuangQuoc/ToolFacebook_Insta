@@ -404,3 +404,5 @@ E:\02. Cong viec\Share_Quoc_Sang\ToolCreateFb\ToolFacebook_Insta\CreateAccountsF
 E:\02. Cong viec\Share_Quoc_Sang\ToolCreateFb\ToolFacebook_Insta\CreateAccountsFacebook\obj\Debug\CreateAccountsProject.exe
 E:\02. Cong viec\Share_Quoc_Sang\ToolCreateFb\ToolFacebook_Insta\CreateAccountsFacebook\obj\Debug\CreateAccountsProject.pdb
 C:\Users\Admin\Desktop\company\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\Emgu.CV.World.dll
+E:\02. Cong viec\Share_Quoc_Sang\ToolCreateFb\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\KAutoHelper.dll
+E:\02. Cong viec\Share_Quoc_Sang\ToolCreateFb\ToolFacebook_Insta\CreateAccountsFacebook\bin\Debug\Emgu.CV.World.dll

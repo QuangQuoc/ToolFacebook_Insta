@@ -129,6 +129,17 @@ namespace CreateAccountsProject.Controllers
                             // TH không lấy được Message
                             if (!smsOk)
                             {
+                                // Nếu không lấy được sđt => đổi dịch vụ
+                                if (simService == SIMSERVICE.SIMTHUE)
+                                {
+                                    simService = SIMSERVICE.RENTCODE;
+                                    rentcode.CreateRequest();
+                                }
+                                else if (simService == SIMSERVICE.RENTCODE)
+                                {
+                                    simService = SIMSERVICE.SIMTHUE;
+                                    simthue.CreateRequest();
+                                }
                                 // Xóa browser
                                 LdPlayerService.UnInstallApp(ld.Name, ld.Accounts[i].BrowserName);
                                 DelayService.Seconds(40);
@@ -235,7 +246,7 @@ namespace CreateAccountsProject.Controllers
                     accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
                     CheckStopEvent();
                     DeleteImage();
-                    Thread.Sleep(100);
+                    Thread.Sleep(150);
                 }                
             }
             // Update Status
