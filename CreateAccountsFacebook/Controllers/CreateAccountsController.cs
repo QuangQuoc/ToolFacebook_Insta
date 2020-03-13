@@ -119,10 +119,10 @@ namespace CreateAccountsProject.Controllers
                         }
                         ld.Accounts[i].PhoneNumber = phoneNumber;
                         string pass = AddPassWord();
-                        DelayService.Seconds(10);
+                        DelayService.Seconds(15);
                         var screen = KAutoHelper.ADBHelper.ScreenShoot(ld.DeviceIp, false, DeviceVariablesService.ScreenShotFilePath);
                         var compare_checkDkSdt = KAutoHelper.ImageScanOpenCV.FindOutPoint(screen, BMPVariablesService.BMP_CheckDkSdt);
-                        if (compare_checkDkSdt == null)
+                        if (compare_checkDkSdt != null)
                         {
                             ld.Accounts[i].Password = pass;
                             bool smsOk = RequestSms();
@@ -235,7 +235,7 @@ namespace CreateAccountsProject.Controllers
                     accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
                     CheckStopEvent();
                     DeleteImage();
-                    Thread.Sleep(100);
+                    DelayService.Seconds(100);
                 }                
             }
             // Update Status
@@ -639,6 +639,7 @@ namespace CreateAccountsProject.Controllers
             {
                 Thread.Sleep(TimeSpan.FromSeconds(3));
                 loadLink("https://mbasic.facebook.com/security/2fac/setup/intro/");
+                Thread.Sleep(TimeSpan.FromSeconds(5));
                 // click vào button chuyển đến setup 2fa
                 try
                 {
@@ -650,7 +651,7 @@ namespace CreateAccountsProject.Controllers
                 {
                     KAutoHelper.ADBHelper.TapByPercent(deviceID, 48.3, 67.8);
                 }
-                Thread.Sleep(TimeSpan.FromSeconds(5));
+                Thread.Sleep(TimeSpan.FromSeconds(15));
 
                 // Xác nhận mật khẩu trước khi setup 2fa
                 var screen2 = KAutoHelper.ADBHelper.ScreenShoot(deviceID);
@@ -789,6 +790,7 @@ namespace CreateAccountsProject.Controllers
             {
                 // Save Image
                 loadLink(link: linkImage);
+                Thread.Sleep(TimeSpan.FromSeconds(5));
                 KAutoHelper.ADBHelper.LongPress(deviceID, 243, 178, 1000);
                 Thread.Sleep(TimeSpan.FromSeconds(2));
                 var screen = KAutoHelper.ADBHelper.ScreenShoot(deviceID);
