@@ -246,7 +246,7 @@ namespace CreateAccountsProject.Controllers
                     accountsRepo.UpdateAccount(ld.Accounts[i].Id, ld.Accounts[i]);
                     CheckStopEvent();
                     DeleteImage();
-                    Thread.Sleep(100);
+                    Thread.Sleep(150);
                 }                
             }
             // Update Status
